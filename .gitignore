@@ -64,3 +64,4 @@ docker-compose.override.yml
 # Ignore unused or optional directories
 .kamal/
 .github/
+.env
