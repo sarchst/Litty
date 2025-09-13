@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_09_215630) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_13_030934) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -47,6 +47,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_09_215630) do
     t.text "author_bio"
     t.boolean "top_5"
     t.text "genres", default: [], array: true
+    t.boolean "is_fiction"
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
   end
 end

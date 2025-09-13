@@ -42,7 +42,9 @@ class Api::BooksController < ApplicationController
       primary_quotes: book.primary_quotes,
       accolades: book.accolades,
       author_bio: book.author_bio,
-      top_5: book.top_5
+      top_5: book.top_5,
+      is_fiction: book.is_fiction,
+      cover_image_url: book.cover_image_url
     }
   end
 end

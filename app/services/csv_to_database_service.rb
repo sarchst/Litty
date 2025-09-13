@@ -3,13 +3,14 @@
       rows = CSV.read(csv_path, headers: true)
       rows.each do |row|
         unless Book.find_by(isbn: row["ISBN"])
-          author = 
+          genre = row["BISAC Category Description"]
+
           attributes = {
             isbn: row["EAN"],
             title: row["Title"],
             publisher: row["Publisher Name"],
             published_at: row["PubDate"],
-            genres: row["BISAC Category Description"]&.split("/"),
+            genres: genre&.split("/"),
             page_count: row["Number of Pages"],
             description: row["Summary"],
             authors: "#{row["Author"].split(", ").last + " " + row["Author"].split(", ").first}",
@@ -18,7 +19,8 @@
             primary_quotes: row["Primary Quotes"]&.split("\n"),
             accolades: row["Awards & Accolades"]&.split("\n"),
             author_bio: row["Contributor Bio (Raw from PDF)"],
-            top_5: row["Left Panel List"] == "1"
+            top_5: row["Left Panel List"] == "1",
+            is_fiction: genre&.include?("Fiction")
           }
           
           Book.create(attributes)
