@@ -1,5 +1,9 @@
 class Api::BooksController < ApplicationController
   
+  # GET /api/books
+  # Optional params:
+  #   - year: integer (returns books for specific year)
+  #   - top_5: 'true'/'false' (filters by top_5 status, defaults to all books)
   def index
     if params[:year].present?
       # Return books for specific year
@@ -7,8 +11,11 @@ class Api::BooksController < ApplicationController
       books = Book.where("EXTRACT(year FROM published_at) = ?", year).order(:title)
       render json: { year => books.map(&method(:book_attributes)) }
     else
-      # Return all books with top_5 = true organized by year
-      books_by_year = Book.where(top_5: true).order(:published_at).group_by { |book| book.published_at&.year }
+      # Filter by top_5 if specified, otherwise return all books
+      books_query = Book.all
+      books_query = books_query.where(top_5: true) if params[:top_5] == 'true'
+      
+      books_by_year = books_query.order(:published_at).group_by { |book| book.published_at&.year }
       result = {}
       books_by_year.each do |year, books|
         result[year] = books.map(&method(:book_attributes))
@@ -21,6 +28,7 @@ class Api::BooksController < ApplicationController
     book = Book.find(params[:id])
     render json: book_attributes(book)
   end
+
   
   private
   

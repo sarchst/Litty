@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header({ onNavigate }) {
   return (
     <div
       style={{
@@ -11,14 +11,17 @@ export default function Header() {
       }}
     >
       {/* Logo Section */}
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div 
+        style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+        onClick={() => onNavigate('home')}
+      >
         {/* Logo Icon */}
-        <div
+        <img
+          src="/images/litty_icon.png"
+          alt="Litty Logo"
           style={{
             width: "32px",
             height: "32px",
-            backgroundColor: "#474747",
-            borderRadius: "4px",
             flexShrink: 0
           }}
         />
@@ -37,9 +40,10 @@ export default function Header() {
         </div>
       </div>
       
-      {/* Navigation - keeping for now but can be removed if not needed */}
+      {/* Navigation */}
       <nav style={{ display: "flex", gap: "32px", alignItems: "center" }}>
         <div
+          onClick={() => onNavigate('the-project')}
           style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 600,
@@ -51,9 +55,10 @@ export default function Header() {
           onMouseEnter={(e) => e.target.style.opacity = "0.7"}
           onMouseLeave={(e) => e.target.style.opacity = "1"}
         >
-          Contact
+          THE PROJECT
         </div>
         <div
+          onClick={() => onNavigate('blog')}
           style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 600,
@@ -65,9 +70,10 @@ export default function Header() {
           onMouseEnter={(e) => e.target.style.opacity = "0.7"}
           onMouseLeave={(e) => e.target.style.opacity = "1"}
         >
-          About Us
+          BLOG
         </div>
         <div
+          onClick={() => onNavigate('about-us')}
           style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 600,
@@ -79,7 +85,7 @@ export default function Header() {
           onMouseEnter={(e) => e.target.style.opacity = "0.7"}
           onMouseLeave={(e) => e.target.style.opacity = "1"}
         >
-          Shop
+          ABOUT US
         </div>
       </nav>
     </div>

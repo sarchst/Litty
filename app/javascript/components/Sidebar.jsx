@@ -1,21 +1,24 @@
 import { useState, useEffect } from 'react'
 
-export default function Sidebar({ onBookSelect }) {
+export default function Sidebar({ onBookSelect, onSeeAll }) {
   const [expandedYears, setExpandedYears] = useState({})
   const [booksByYear, setBooksByYear] = useState({})
   const [loading, setLoading] = useState(true)
+  const [hoveredBook, setHoveredBook] = useState(null)
+  const [hoveredRowRef, setHoveredRowRef] = useState(null)
+  const [scrollContainerRef, setScrollContainerRef] = useState(null)
 
   useEffect(() => {
-    fetch('/api/books')
+    fetch('/api/books?top_5=true')
       .then(response => response.json())
       .then(data => {
         console.log('Raw API data:', data)
         
-        // Filter books with top_5 = true and organize by year and fiction/non-fiction
+        // Organize by year and fiction/non-fiction (API already filtered by top_5)
         const organizedBooks = {}
         
         Object.keys(data).forEach(year => {
-          const yearBooks = data[year].filter(book => book.top_5 === true)
+          const yearBooks = data[year] // No need to filter, API already returns top_5 books
           console.log(`Year ${year} books:`, yearBooks)
           
           if (yearBooks.length > 0) {
@@ -31,6 +34,10 @@ export default function Sidebar({ onBookSelect }) {
         
         console.log('Organized books:', organizedBooks)
         setBooksByYear(organizedBooks)
+        
+        // Preload all cover images
+        preloadCoverImages(organizedBooks)
+        
         setLoading(false)
       })
       .catch(error => {
@@ -39,12 +46,23 @@ export default function Sidebar({ onBookSelect }) {
       })
   }, [])
 
+  const preloadCoverImages = (booksByYear) => {
+    Object.values(booksByYear).forEach(yearData => {
+      [...yearData.fiction, ...yearData.nonfiction].forEach(book => {
+        if (book.cover_image_url) {
+          const img = new Image()
+          img.src = book.cover_image_url
+        }
+      })
+    })
+  }
+
   const toggleYear = (year) => {
     setExpandedYears(prev => ({ ...prev, [year]: !prev[year] }))
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden" }}>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden", position: "relative" }}>
       <div style={{ 
         padding: "1rem", 
         borderRight: "1px solid #474747",
@@ -61,14 +79,15 @@ export default function Sidebar({ onBookSelect }) {
         </div>
       </div>
       
-      {/* Scrollable book list */}
-      <div
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          borderRight: "1px solid #474747"
-        }}
-      >
+            {/* Scrollable book list */}
+            <div
+              ref={setScrollContainerRef}
+              style={{
+                flex: 1,
+                overflowY: "auto",
+                borderRight: "1px solid #474747"
+              }}
+            >
         {loading ? (
           <div style={{ padding: "2rem", textAlign: "center" }}>Loading books...</div>
         ) : (
@@ -145,13 +164,15 @@ export default function Sidebar({ onBookSelect }) {
                     }}>
                       FICTION
                     </div>
-                    <div style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "4px",
-                      cursor: "pointer",
-                      transition: "opacity 0.2s ease"
-                    }}
+                    <div 
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
+                        cursor: "pointer",
+                        transition: "opacity 0.2s ease"
+                      }}
+                      onClick={() => onSeeAll(year, 'fiction')}
                       onMouseEnter={(e) => e.target.style.opacity = "0.7"}
                       onMouseLeave={(e) => e.target.style.opacity = "1"}
                     >
@@ -177,8 +198,17 @@ export default function Sidebar({ onBookSelect }) {
                           padding: "0 16px 0 32px",
                           alignItems: "center",
                           cursor: "pointer",
+                          position: "relative"
                         }}
                         onClick={() => onBookSelect(book)}
+                        onMouseEnter={(e) => {
+                          setHoveredBook(book)
+                          setHoveredRowRef(e.currentTarget)
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredBook(null)
+                          setHoveredRowRef(null)
+                        }}
                       >
                         <span 
                           style={{
@@ -228,13 +258,15 @@ export default function Sidebar({ onBookSelect }) {
                     }}>
                       NON-FICTION
                     </div>
-                    <div style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "4px",
-                      cursor: "pointer",
-                      transition: "opacity 0.2s ease"
-                    }}
+                    <div 
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
+                        cursor: "pointer",
+                        transition: "opacity 0.2s ease"
+                      }}
+                      onClick={() => onSeeAll(year, 'nonfiction')}
                       onMouseEnter={(e) => e.target.style.opacity = "0.7"}
                       onMouseLeave={(e) => e.target.style.opacity = "1"}
                     >
@@ -260,8 +292,17 @@ export default function Sidebar({ onBookSelect }) {
                           padding: "0 16px 0 32px",
                           alignItems: "center",
                           cursor: "pointer",
+                          position: "relative"
                         }}
                         onClick={() => onBookSelect(book)}
+                        onMouseEnter={(e) => {
+                          setHoveredBook(book)
+                          setHoveredRowRef(e.currentTarget)
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredBook(null)
+                          setHoveredRowRef(null)
+                        }}
                       >
                         <span 
                           style={{
@@ -300,6 +341,34 @@ export default function Sidebar({ onBookSelect }) {
         ))
         )}
       </div>
+
+      {/* Hover cover image */}
+      {hoveredBook && hoveredBook.cover_image_url && hoveredRowRef && scrollContainerRef && (
+        <div
+          style={{
+            position: "absolute",
+            top: hoveredRowRef.offsetTop + hoveredRowRef.offsetHeight / 2 - scrollContainerRef.scrollTop,
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 1,
+            pointerEvents: "none",
+            opacity: 0.3,
+            transition: "opacity 0.3s ease"
+          }}
+        >
+          <img
+            src={hoveredBook.cover_image_url}
+            alt={`${hoveredBook.title} cover`}
+            style={{
+              width: "60px",
+              height: "90px",
+              objectFit: "cover",
+              borderRadius: "4px",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.3)"
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }
