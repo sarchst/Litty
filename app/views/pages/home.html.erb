@@ -1,0 +1,10 @@
+<h1>Litty.ca</h1>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; padding: 20px;">
+  <% @books.each do |book| %>
+    <div style="text-align: center;">
+      <img src="<%= book.cover_image_url %>" alt="<%= book.title %>" style="width: 150px; height: 200px; object-fit: cover; border: 1px solid #ccc;">
+      <p style="margin-top: 10px; font-size: 14px;"><%= book.title %></p>
+    </div>
+  <% end %>
+</div>
