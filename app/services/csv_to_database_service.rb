@@ -13,7 +13,7 @@
             genres: genre&.split("/"),
             page_count: row["Number of Pages"],
             description: row["Summary"],
-            authors: "#{row["Author"].split(", ").last + " " + row["Author"].split(", ").first}",
+            authors: row["Author Full"],
             subtitle: row["Subtitle"],
             series: row["Series"],
             primary_quotes: row["Primary Quotes"]&.split("\n"),
