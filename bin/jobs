@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require_relative "../config/environment"
-require "solid_queue/cli"
 
-SolidQueue::Cli.start(ARGV)
+# Solid Queue removed - using default Rails async adapter
+# For background jobs, use Rails' built-in async adapter
+puts "Background jobs are handled by Rails' async adapter"
+puts "No separate job processor needed"
