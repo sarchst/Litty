@@ -85,7 +85,10 @@ export default function BookView({
         gap: "2rem",
         marginBottom: "2rem"
       }}>
-        {books.map((book, index) => {
+        {books
+          .slice()
+          .sort((a, b) => (a.ranking || 0) - (b.ranking || 0))
+          .map((book, index) => {
           const bookId = book.id || index
           const isHovered = hoveredBookId === bookId
           
@@ -152,13 +155,13 @@ export default function BookView({
                       overflow: "hidden",
                       textOverflow: "ellipsis"
                     }}>
-                      {book.description || "No description available"}
+                      {book.short_summary || "No description available"}
                     </div>
                   </div>
                 </div>
               )}
               
-              {/* Book title */}
+              {/* Book title with ranking */}
               <div style={{
                 color: "var(--Off-Black, #474747)",
                 fontFamily: '"Neue Haas Grotesk Text Pro"',
@@ -168,7 +171,7 @@ export default function BookView({
                 lineHeight: "normal",
                 marginBottom: "0.5rem"
               }}>
-                {book.title}
+                {book.ranking ? `${book.ranking}. ` : ""}{book.title}
               </div>
               
               {/* Author */}

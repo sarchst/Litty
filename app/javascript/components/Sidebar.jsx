@@ -190,7 +190,10 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
                     </div>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                    {booksByYear[year].fiction.map((book, index) => (
+                    {booksByYear[year].fiction
+                      .slice()
+                      .sort((a, b) => (a.ranking || 0) - (b.ranking || 0))
+                      .map((book, index) => (
                       <div 
                         key={book.id || index} 
                         style={{
@@ -284,7 +287,10 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
                     </div>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                    {booksByYear[year].nonfiction.map((book, index) => (
+                    {booksByYear[year].nonfiction
+                      .slice()
+                      .sort((a, b) => (a.ranking || 0) - (b.ranking || 0))
+                      .map((book, index) => (
                       <div 
                         key={book.id || index} 
                         style={{
