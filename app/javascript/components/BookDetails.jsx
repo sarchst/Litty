@@ -58,12 +58,12 @@ export default function BookDetails({ book, year, category, onBack }) {
           }}>
             {book.publisher && (
               <p style={{ margin: "0 0 1rem 0" }}>
-                <strong>Publisher:</strong> {book.publisher}
+                Publisher: {book.publisher}
               </p>
             )}
             {book.isbn && (
               <p style={{ margin: "0" }}>
-                <strong>ISBN:</strong> {book.isbn}
+                ISBN: {book.isbn}
               </p>
             )}
             {!book.publisher && !book.isbn && (
