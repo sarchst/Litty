@@ -41,6 +41,7 @@
 
 # Ignore CSV, logs, and text files
 *.csv
+# !data/books.csv
 *.log
 *.txt
 
