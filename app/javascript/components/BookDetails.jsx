@@ -19,7 +19,20 @@ export default function BookDetails({ book, year, category, onBack }) {
             lineHeight: "normal",
             marginBottom: "2rem"
           }}>
-            {book.description || "No description available."}
+            <div style={{ marginBottom: "2rem" }}>
+              {book.description || "No description available."}
+            </div>
+            {book.primary_quotes && book.primary_quotes.length > 0 && (
+              <div>
+                {book.primary_quotes.map((quote, index) => (
+                  <p key={index} style={{ 
+                    margin: index === book.primary_quotes.length - 1 ? "0" : "0 0 1rem 0"
+                  }}>
+                    {quote}
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
         )
       case 'author':
@@ -43,9 +56,19 @@ export default function BookDetails({ book, year, category, onBack }) {
             lineHeight: "normal",
             marginBottom: "2rem"
           }}>
-            <p style={{ margin: "0 0 1rem 0" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <p style={{ margin: "0 0 1rem 0" }}>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p style={{ margin: "0" }}>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            {book.publisher && (
+              <p style={{ margin: "0 0 1rem 0" }}>
+                <strong>Publisher:</strong> {book.publisher}
+              </p>
+            )}
+            {book.isbn && (
+              <p style={{ margin: "0" }}>
+                <strong>ISBN:</strong> {book.isbn}
+              </p>
+            )}
+            {!book.publisher && !book.isbn && (
+              <p style={{ margin: "0" }}>No book details available.</p>
+            )}
           </div>
         )
       case 'accolades':
@@ -57,9 +80,15 @@ export default function BookDetails({ book, year, category, onBack }) {
             lineHeight: "normal",
             marginBottom: "2rem"
           }}>
-            <p style={{ margin: "0 0 1rem 0" }}>"Lorem ipsum dolor sit amet." —Lorem Ipsum</p>
-            <p style={{ margin: "0 0 1rem 0" }}>"Consectetur adipiscing elit." —Sed Do</p>
-            <p style={{ margin: "0" }}>"Eiusmod tempor incididunt." —Ut Labore</p>
+            {book.accolades && book.accolades.length > 0 ? (
+              book.accolades.map((accolade, index) => (
+                <p key={index} style={{ margin: index === book.accolades.length - 1 ? "0" : "0 0 1rem 0" }}>
+                  {accolade}
+                </p>
+              ))
+            ) : (
+              <p style={{ margin: "0" }}>No accolades available.</p>
+            )}
           </div>
         )
       default:

@@ -7,6 +7,7 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
   const [hoveredBook, setHoveredBook] = useState(null)
   const [hoveredRowRef, setHoveredRowRef] = useState(null)
   const [scrollContainerRef, setScrollContainerRef] = useState(null)
+  const [cursorX, setCursorX] = useState(0)
 
   useEffect(() => {
     fetch('/api/books?top_5=true')
@@ -45,6 +46,22 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
         setLoading(false)
       })
   }, [])
+
+  // Add scroll event listener to hide cover on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setHoveredBook(null)
+      setHoveredRowRef(null)
+      setCursorX(0)
+    }
+
+    if (scrollContainerRef) {
+      scrollContainerRef.addEventListener('scroll', handleScroll)
+      return () => {
+        scrollContainerRef.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [scrollContainerRef])
 
   const preloadCoverImages = (booksByYear) => {
     Object.values(booksByYear).forEach(yearData => {
@@ -150,12 +167,19 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
               <div>
                 {/* Fiction Section */}
                 <div style={{ padding: "8px 0" }}>
-                  <div style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "0 16px 8px 16px"
-                  }}>
+                  <div 
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "0 16px 8px 16px",
+                      cursor: "pointer",
+                      transition: "opacity 0.2s ease"
+                    }}
+                    onClick={() => onSeeAll(year, 'fiction')}
+                    onMouseEnter={(e) => e.target.style.opacity = "0.7"}
+                    onMouseLeave={(e) => e.target.style.opacity = "1"}
+                  >
                     <div style={{
                       fontFamily: "'Playfair Display', serif",
                       fontWeight: 600,
@@ -168,13 +192,8 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "4px",
-                        cursor: "pointer",
-                        transition: "opacity 0.2s ease"
+                        gap: "4px"
                       }}
-                      onClick={() => onSeeAll(year, 'fiction')}
-                      onMouseEnter={(e) => e.target.style.opacity = "0.7"}
-                      onMouseLeave={(e) => e.target.style.opacity = "1"}
                     >
                       <span style={{
                         color: "var(--Off-Black, #474747)",
@@ -207,10 +226,12 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
                         onMouseEnter={(e) => {
                           setHoveredBook(book)
                           setHoveredRowRef(e.currentTarget)
+                          setCursorX(e.clientX)
                         }}
                         onMouseLeave={() => {
                           setHoveredBook(null)
                           setHoveredRowRef(null)
+                          setCursorX(0)
                         }}
                       >
                         <span 
@@ -247,12 +268,19 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
 
                 {/* Non-Fiction Section */}
                 <div style={{ padding: "8px 0" }}>
-                  <div style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "0 16px 8px 16px"
-                  }}>
+                  <div 
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "0 16px 8px 16px",
+                      cursor: "pointer",
+                      transition: "opacity 0.2s ease"
+                    }}
+                    onClick={() => onSeeAll(year, 'nonfiction')}
+                    onMouseEnter={(e) => e.target.style.opacity = "0.7"}
+                    onMouseLeave={(e) => e.target.style.opacity = "1"}
+                  >
                     <div style={{
                       fontFamily: "'Playfair Display', serif",
                       fontWeight: 600,
@@ -265,13 +293,8 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "4px",
-                        cursor: "pointer",
-                        transition: "opacity 0.2s ease"
+                        gap: "4px"
                       }}
-                      onClick={() => onSeeAll(year, 'nonfiction')}
-                      onMouseEnter={(e) => e.target.style.opacity = "0.7"}
-                      onMouseLeave={(e) => e.target.style.opacity = "1"}
                     >
                       <span style={{
                         color: "var(--Off-Black, #474747)",
@@ -304,10 +327,12 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
                         onMouseEnter={(e) => {
                           setHoveredBook(book)
                           setHoveredRowRef(e.currentTarget)
+                          setCursorX(e.clientX)
                         }}
                         onMouseLeave={() => {
                           setHoveredBook(null)
                           setHoveredRowRef(null)
+                          setCursorX(0)
                         }}
                       >
                         <span 
@@ -349,14 +374,14 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
       </div>
 
       {/* Hover cover image */}
-      {hoveredBook && hoveredBook.cover_image_url && hoveredRowRef && scrollContainerRef && (
+      {hoveredBook && hoveredBook.cover_image_url && hoveredRowRef && scrollContainerRef && cursorX > 0 && (
         <div
           style={{
             position: "absolute",
             top: hoveredRowRef.offsetTop + hoveredRowRef.offsetHeight / 2 - scrollContainerRef.scrollTop,
-            left: "50%",
+            left: cursorX - scrollContainerRef.getBoundingClientRect().left,
             transform: "translate(-50%, -50%)",
-            zIndex: 1,
+            zIndex: 11,
             pointerEvents: "none",
             opacity: 0.3,
             transition: "opacity 0.3s ease"
