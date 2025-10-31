@@ -47,10 +47,10 @@ export default function MainLayout({ currentPage }) {
 
   return (
     <div style={{ display: "flex", height: "100%", overflow: "hidden" }}>
-      <div style={{ flex: 1, overflow: "hidden" }}>
+      <div style={{ flex: 0.48, overflow: "hidden" }}>
         <Sidebar onBookSelect={handleBookSelect} onSeeAll={handleSeeAll} />
       </div>
-      <div style={{ flex: 2, overflow: "hidden" }}>
+      <div style={{ flex: 1, overflow: "hidden" }}>
         <Content 
           selectedBook={selectedBook} 
           currentPage={currentPage} 

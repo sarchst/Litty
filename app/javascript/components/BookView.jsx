@@ -82,7 +82,7 @@ export default function BookView({
       <div style={{
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
-        gap: "2rem",
+        gap: "36px",
         marginBottom: "2rem"
       }}>
         {books
@@ -137,12 +137,12 @@ export default function BookView({
                     borderRadius: "4px",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
                     padding: "1rem",
                     opacity: isHovered ? 1 : 0,
                     transition: "opacity 0.3s ease",
-                    textAlign: "center",
+                    textAlign: "left",
                     pointerEvents: "none"
                   }}>
                     <div style={{
