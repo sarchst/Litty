@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function Sidebar({ onBookSelect, onSeeAll }) {
+export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, booksCache, cacheLoading, isInMenu = false }) {
   const [expandedYears, setExpandedYears] = useState({})
   const [booksByYear, setBooksByYear] = useState({})
   const [loading, setLoading] = useState(true)
@@ -9,43 +9,50 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
   const [scrollContainerRef, setScrollContainerRef] = useState(null)
   const [cursorX, setCursorX] = useState(0)
 
+  // Reset expanded years when mobile state changes
   useEffect(() => {
-    fetch('/api/books?top_5=true')
-      .then(response => response.json())
-      .then(data => {
-        console.log('Raw API data:', data)
+    if (Object.keys(booksByYear).length > 0) {
+      const newExpandedState = {}
+      Object.keys(booksByYear).forEach(year => {
+        newExpandedState[year] = !isMobile
+      })
+      setExpandedYears(newExpandedState)
+    }
+  }, [isMobile, booksByYear])
+
+  useEffect(() => {
+    if (booksCache) {
+      
+      // Organize by year and fiction/non-fiction
+      const organizedBooks = {}
+      
+      Object.keys(booksCache).forEach(year => {
+        const yearBooks = booksCache[year]
+        // Filter for top 5 books only in sidebar
+        const top5Books = yearBooks.filter(book => book.top_5 === true)
         
-        // Organize by year and fiction/non-fiction (API already filtered by top_5)
-        const organizedBooks = {}
-        
-        Object.keys(data).forEach(year => {
-          const yearBooks = data[year] // No need to filter, API already returns top_5 books
-          console.log(`Year ${year} books:`, yearBooks)
-          
-          if (yearBooks.length > 0) {
-            organizedBooks[year] = {
-              fiction: yearBooks.filter(book => book.is_fiction === true),
-              nonfiction: yearBooks.filter(book => book.is_fiction === false)
-            }
-            
-            // Initialize expanded state for this year
-            setExpandedYears(prev => ({ ...prev, [year]: true }))
+        if (top5Books.length > 0) {
+          organizedBooks[year] = {
+            fiction: top5Books.filter(book => book.is_fiction === true),
+            nonfiction: top5Books.filter(book => book.is_fiction === false)
           }
-        })
-        
-        console.log('Organized books:', organizedBooks)
-        setBooksByYear(organizedBooks)
-        
-        // Preload all cover images
-        preloadCoverImages(organizedBooks)
-        
-        setLoading(false)
+          
+          // Initialize expanded state for this year (closed on mobile, open on desktop)
+          setExpandedYears(prev => ({ ...prev, [year]: !isMobile }))
+        }
       })
-      .catch(error => {
-        console.error('Error fetching books:', error)
-        setLoading(false)
-      })
-  }, [])
+      
+      setBooksByYear(organizedBooks)
+      
+      // Preload all cover images
+      preloadCoverImages(organizedBooks)
+      
+      setLoading(false)
+    } else if (!cacheLoading) {
+      // Cache failed to load
+      setLoading(false)
+    }
+  }, [booksCache, cacheLoading, isMobile])
 
   // Add scroll event listener to hide cover on scroll
   useEffect(() => {
@@ -80,21 +87,23 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden", position: "relative" }}>
-      <div style={{ 
-        padding: "1rem", 
-        borderRight: "1px solid #474747",
-        borderBottom: "1px solid #474747",
-        height: "200px",
-        display: "flex",
-        flexDirection: "column"
-      }}>
-        <div style={{
-          width: "71%",
-          fontSize: "16px"
+      {!isInMenu && (
+        <div style={{ 
+          padding: "1rem", 
+          borderRight: "1px solid #474747",
+          borderBottom: "1px solid #474747",
+          height: "200px",
+          display: "flex",
+          flexDirection: "column"
         }}>
-          <text>We checked the lists so you don't have to. We gather the most trusted end-of-year book lists from critics, publishers, and reviewers, then bring them together in one place. No endless scrolling—just the books worth your time, all neatly in one spot</text>
+          <div style={{
+            width: "71%",
+            fontSize: "16px"
+          }}>
+            <text>We checked the lists so you don't have to. We gather the most trusted end-of-year book lists from critics, publishers, and reviewers, then bring them together in one place. No endless scrolling—just the books worth your time, all neatly in one spot</text>
+          </div>
         </div>
-      </div>
+      )}
       
             {/* Scrollable book list */}
             <div
@@ -102,7 +111,7 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
               style={{
                 flex: 1,
                 overflowY: "auto",
-                borderRight: "1px solid #474747"
+                borderRight: isInMenu ? "none" : "1px solid #474747"
               }}
             >
         {loading ? (
@@ -176,7 +185,9 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
                       cursor: "pointer",
                       transition: "opacity 0.2s ease"
                     }}
-                    onClick={() => onSeeAll(year, 'fiction')}
+                    onClick={() => {
+                      onSeeAll(year, 'fiction')
+                    }}
                     onMouseEnter={(e) => e.target.style.opacity = "0.7"}
                     onMouseLeave={(e) => e.target.style.opacity = "1"}
                   >
@@ -277,7 +288,9 @@ export default function Sidebar({ onBookSelect, onSeeAll }) {
                       cursor: "pointer",
                       transition: "opacity 0.2s ease"
                     }}
-                    onClick={() => onSeeAll(year, 'nonfiction')}
+                    onClick={() => {
+                      onSeeAll(year, 'nonfiction')
+                    }}
                     onMouseEnter={(e) => e.target.style.opacity = "0.7"}
                     onMouseLeave={(e) => e.target.style.opacity = "1"}
                   >

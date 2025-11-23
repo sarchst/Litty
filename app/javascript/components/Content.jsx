@@ -3,6 +3,7 @@ import TheProject from './TheProject'
 import Blog from './Blog'
 import AboutUs from './AboutUs'
 import BookView from './BookView'
+import LandingPage from './LandingPage'
 
 export default function Content({ selectedBook, currentPage, bookList, onBackToMain, onBookSelect, onSeeAll }) {
   const [imageLoading, setImageLoading] = useState(true)
@@ -54,32 +55,7 @@ export default function Content({ selectedBook, currentPage, bookList, onBackToM
       case 'about-us':
         return <AboutUs />
       default:
-        return (
-          <div style={{ position: "relative", height: "100%" }}>
-            <h2 style={{
-              color: "var(--Off-Black, #474747)",
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "64px",
-              fontStyle: "normal",
-              fontWeight: 600,
-              lineHeight: "63px"
-            }}>Find the books everyone's talking about.</h2>
-            
-            {/* Landing page image in bottom right */}
-            <img
-              src="/images/landing_page.png"
-              alt="Landing page illustration"
-              style={{
-                position: "absolute",
-                bottom: "0",
-                right: "0",
-                maxWidth: "300px",
-                maxHeight: "300px",
-                objectFit: "contain"
-              }}
-            />
-          </div>
-        )
+        return <LandingPage />
     }
   }
 

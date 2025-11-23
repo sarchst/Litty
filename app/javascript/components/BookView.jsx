@@ -13,12 +13,23 @@ export default function BookView({
   const [imageLoading, setImageLoading] = useState(true)
   const [imageError, setImageError] = useState(false)
   const [hoveredBookId, setHoveredBookId] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
 
   // Reset loading state when selected book changes
   useEffect(() => {
     setImageLoading(true)
     setImageError(false)
   }, [selectedBook?.id])
+
+  // Mobile detection
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   const categoryTitle = category === 'fiction' ? 'FICTION' : 'NON-FICTION'
   const title = `BEST ${categoryTitle} BOOKS OF ${year}`
@@ -78,11 +89,11 @@ export default function BookView({
         {title}
       </div>
 
-      {/* Books grid - 4 books per row */}
+      {/* Books grid - responsive: 2 columns on mobile, 4 on desktop */}
       <div style={{
         display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        gap: "36px",
+        gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+        gap: isMobile ? "24px" : "36px",
         marginBottom: "2rem"
       }}>
         {books
@@ -110,8 +121,9 @@ export default function BookView({
                   marginBottom: "1rem",
                   position: "relative",
                   width: "100%",
-                  maxWidth: "200px",
-                  height: "300px",
+                  maxWidth: isMobile ? "none" : "200px",
+                  height: isMobile ? "auto" : "300px",
+                  aspectRatio: isMobile ? "2/3" : "auto", // Book aspect ratio for mobile
                   margin: "0 auto 1rem auto"
                 }}>
                   <img
@@ -119,7 +131,8 @@ export default function BookView({
                     alt={`${book.title} cover`}
                     style={{
                       width: "100%",
-                      height: "100%",
+                      height: isMobile ? "auto" : "100%",
+                      aspectRatio: isMobile ? "2/3" : "auto", // Maintain book proportions on mobile
                       objectFit: "cover",
                       borderRadius: "4px",
                       boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
