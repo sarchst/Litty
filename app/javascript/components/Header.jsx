@@ -34,21 +34,26 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
     <div
       style={{
         backgroundColor: "white",
-        padding: "16px",
+        height: "64px",
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
+        alignItems: "stretch",
         borderBottom: "1px solid #474747"
       }}
     >
-      {/* Logo Section */}
+      {/* Logo Frame */}
       <div 
-        style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+        style={{ 
+          display: "flex", 
+          alignItems: "center", 
+          padding: "16px",
+          cursor: "pointer" 
+        }}
         onClick={() => onNavigate('home')}
       >
-        {/* Logo Icon */}
+        {/* Logo Icon - 32x32 */}
         <img
-          src="/images/litty_icon.png"
+          src="/images/litty-icon.png"
           alt="Litty Logo"
           style={{
             width: "32px",
@@ -56,15 +61,23 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
             flexShrink: 0
           }}
         />
-        {/* Logo Text */}
+        {/* LITTY Text - 60x23 with 8px left gap and 4.5px top/bottom padding */}
         <div
+          className="tk-new-spirit"
           style={{
-            fontFamily: "'Playfair Display', serif",
-            fontWeight: 600,
+            marginLeft: "8px",
+            padding: "4.5px 0",
+            width: "60px",
+            height: "23px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "var(--Off-Black, #474747)",
+            fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
             fontSize: "18px",
-            color: "#474747",
-            letterSpacing: "0.5px",
-            whiteSpace: "nowrap"
+            fontStyle: "normal",
+            fontWeight: 600,
+            lineHeight: "normal"
           }}
         >
           LITTY
@@ -73,15 +86,28 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
       
       {/* Navigation */}
       {!isMobile ? (
-        // Desktop Navigation
-        <nav style={{ display: "flex", gap: "32px", alignItems: "center" }}>
+        // Desktop Navigation Frame
+        <div style={{ 
+          display: "flex", 
+          alignItems: "center", 
+          paddingRight: "16px",
+          gap: "32px"
+        }}>
           <div
+            className="tk-new-spirit"
             onClick={() => onNavigate('the-project')}
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: 600,
+              width: "137px",
+              height: "23px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
               fontSize: "18px",
-              color: "#474747",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "normal",
               cursor: "pointer",
               transition: "opacity 0.2s ease"
             }}
@@ -91,12 +117,20 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
             THE PROJECT
           </div>
           <div
+            className="tk-new-spirit"
             onClick={() => onNavigate('blog')}
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: 600,
+              width: "55px",
+              height: "23px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
               fontSize: "18px",
-              color: "#474747",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "normal",
               cursor: "pointer",
               transition: "opacity 0.2s ease"
             }}
@@ -106,12 +140,20 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
             BLOG
           </div>
           <div
+            className="tk-new-spirit"
             onClick={() => onNavigate('about-us')}
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: 600,
+              width: "99px",
+              height: "23px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
               fontSize: "18px",
-              color: "#474747",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "normal",
               cursor: "pointer",
               transition: "opacity 0.2s ease"
             }}
@@ -120,21 +162,32 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
           >
             ABOUT US
           </div>
-        </nav>
+        </div>
       ) : (
         // Mobile Menu
-        <div style={{ position: "relative" }}>
+        <div style={{ 
+          display: "flex", 
+          alignItems: "center", 
+          paddingRight: "16px"
+        }}>
           <button
+            className="tk-new-spirit"
             onClick={handleMenuClick}
             style={{
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: 600,
+              width: "55px",
+              height: "23px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
               fontSize: "18px",
-              color: "#474747",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "normal",
               background: "none",
               border: "none",
               cursor: "pointer",
-              padding: "8px 12px",
               transition: "opacity 0.2s ease"
             }}
             onMouseEnter={(e) => e.target.style.opacity = "0.7"}
@@ -162,23 +215,29 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
               <div
                 style={{
                   backgroundColor: "white",
-                  padding: "16px",
+                  height: "64px",
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center",
+                  alignItems: "stretch",
                   borderBottom: "1px solid #474747"
                 }}
               >
-                {/* Logo Section */}
+                {/* Logo Frame */}
                 <div 
-                  style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+                  style={{ 
+                    display: "flex", 
+                    alignItems: "center", 
+                    padding: "16px",
+                    cursor: "pointer" 
+                  }}
                   onClick={() => {
                     setIsMenuOpen(false)
                     onNavigate('home')
                   }}
                 >
+                  {/* Logo Icon - 32x32 */}
                   <img
-                    src="/images/litty_icon.png"
+                    src="/images/litty-icon.png"
                     alt="Litty Logo"
                     style={{
                       width: "32px",
@@ -186,14 +245,23 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                       flexShrink: 0
                     }}
                   />
+                  {/* LITTY Text - 60x23 with 8px left gap and 4.5px top/bottom padding */}
                   <div
+                    className="tk-new-spirit"
                     style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontWeight: 600,
+                      marginLeft: "8px",
+                      padding: "4.5px 0",
+                      width: "60px",
+                      height: "23px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--Off-Black, #474747)",
+                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
                       fontSize: "18px",
-                      color: "#474747",
-                      letterSpacing: "0.5px",
-                      whiteSpace: "nowrap"
+                      fontStyle: "normal",
+                      fontWeight: 600,
+                      lineHeight: "normal"
                     }}
                   >
                     LITTY
@@ -201,21 +269,39 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                 </div>
                 
                 {/* Close button */}
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontWeight: 600,
-                    fontSize: "18px",
-                    color: "#474747",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    padding: "8px 12px"
+                <div
+                  style={{ 
+                    display: "flex", 
+                    alignItems: "center", 
+                    paddingRight: "16px"
                   }}
                 >
-                  close
-                </button>
+                  <button
+                    className="tk-new-spirit"
+                    onClick={() => setIsMenuOpen(false)}
+                    style={{
+                      width: "55px",
+                      height: "23px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--Off-Black, #474747)",
+                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                      fontSize: "18px",
+                      fontStyle: "normal",
+                      fontWeight: 600,
+                      lineHeight: "normal",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      transition: "opacity 0.2s ease"
+                    }}
+                    onMouseEnter={(e) => e.target.style.opacity = "0.7"}
+                    onMouseLeave={(e) => e.target.style.opacity = "1"}
+                  >
+                    close
+                  </button>
+                </div>
               </div>
               
               {/* Menu Content */}
@@ -226,7 +312,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                     onClick={() => handleNavClick('the-project')}
                     style={{
                       fontFamily: "'Playfair Display', serif",
-                      fontWeight: 600,
+                      fontWeight: "normal",
                       fontSize: "24px",
                       color: "#474747",
                       cursor: "pointer",
@@ -242,7 +328,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                     onClick={() => handleNavClick('blog')}
                     style={{
                       fontFamily: "'Playfair Display', serif",
-                      fontWeight: 600,
+                      fontWeight: "normal",
                       fontSize: "24px",
                       color: "#474747",
                       cursor: "pointer",
@@ -258,7 +344,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                     onClick={() => handleNavClick('about-us')}
                     style={{
                       fontFamily: "'Playfair Display', serif",
-                      fontWeight: 600,
+                      fontWeight: "normal",
                       fontSize: "24px",
                       color: "#474747",
                       cursor: "pointer",
@@ -278,7 +364,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                   <div
                     style={{
                       fontFamily: "'Playfair Display', serif",
-                      fontWeight: 600,
+                      fontWeight: "normal",
                       fontSize: "18px",
                       color: "#474747",
                       padding: "8px 16px",

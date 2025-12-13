@@ -60,7 +60,7 @@ export default function Content({ selectedBook, currentPage, bookList, onBackToM
   }
 
   return (
-    <div style={{ padding: "2rem", height: "100%", overflow: "auto" }}>
+    <div style={{ height: "100%", overflow: "auto" }}>
       {renderContent()}
     </div>
   )

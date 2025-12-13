@@ -49,33 +49,86 @@ export default function BookView({
   // Show book list
   if (loading) {
     return (
-      <div>
-        <div style={{
-          color: "#000",
-          fontFamily: '"New Spirit"',
-          fontSize: "18px",
-          fontStyle: "normal",
-          fontWeight: 600,
-          lineHeight: "normal",
-          marginBottom: "2rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "8px"
-        }}>
-          <span style={{ width: "7px", height: "11px" }}></span>
-          {title}
+      <div 
+        style={{ 
+          width: "100%",
+          height: "100%",
+          backgroundColor: "white",
+          padding: "32px 16px 32px 32px",
+          boxSizing: "border-box"
+        }}
+      >
+        <div 
+          style={{ 
+            width: "100%",
+            height: "100%",
+            maxWidth: "1920px",
+            maxHeight: "1080px",
+            padding: "32px 16px 16px 32px",
+            backgroundColor: "white",
+            margin: "0 auto",
+            position: "relative"
+          }}
+        >
+          <div style={{
+            position: "absolute",
+            top: "0",
+            left: "0"
+          }}>
+            <div style={{
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+              fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "normal",
+              marginBottom: "2rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
+            }}>
+              <span style={{ width: "7px", height: "11px" }}></span>
+        {title}
+            </div>
+            <div style={{ textAlign: "center", color: "#666" }}>Loading books...</div>
+          </div>
         </div>
-        <div style={{ textAlign: "center", color: "#666" }}>Loading books...</div>
       </div>
     )
   }
 
   return (
-    <div>
+    <div 
+      style={{ 
+        width: "100%",
+        height: "100%",
+        backgroundColor: "white",
+        padding: "32px 16px 32px 32px",
+        boxSizing: "border-box"
+      }}
+    >
+      <div 
+        style={{ 
+          width: "100%",
+          height: "100%",
+          maxWidth: "1920px",
+          maxHeight: "1080px",
+          padding: "32px 16px 16px 32px",
+          backgroundColor: "white",
+          margin: "0 auto",
+          position: "relative"
+        }}
+      >
+        <div style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%"
+        }}>
       {/* Title without button */}
       <div style={{
-        color: "#000",
-        fontFamily: '"New Spirit"',
+        color: "var(--Off-Black, #474747)",
+        fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
         fontSize: "18px",
         fontStyle: "normal",
         fontWeight: 600,
@@ -177,10 +230,11 @@ export default function BookView({
               {/* Book title with ranking */}
               <div style={{
                 color: "var(--Off-Black, #474747)",
-                fontFamily: '"Neue Haas Grotesk Text Pro"',
+                textAlign: "center",
+                fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                 fontSize: "16px",
                 fontStyle: "italic",
-                fontWeight: 500,
+                fontWeight: 400,
                 lineHeight: "normal",
                 marginBottom: "0.5rem"
               }}>
@@ -190,10 +244,10 @@ export default function BookView({
               {/* Author */}
               <div style={{
                 color: "var(--Author, #4F4F4F)",
-                fontFamily: '"Neue Haas Grotesk Text Pro"',
+                fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                 fontSize: "16px",
                 fontStyle: "normal",
-                fontWeight: 400,
+                fontWeight: 300,
                 lineHeight: "normal"
               }}>
                 {book.authors}
@@ -208,6 +262,8 @@ export default function BookView({
           No books found for this category and year.
         </div>
       )}
+        </div>
+      </div>
     </div>
   )
 }

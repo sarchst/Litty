@@ -24,9 +24,11 @@ export default function BookDetails({ book, year, category, onBack }) {
       case 'description':
         return (
           <div style={{
-            color: "#000",
-            fontFamily: '"Neue Haas Grotesk Text Pro"',
+            color: "var(--Off-Black, #474747)",
+            fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             fontSize: "18px",
+            fontStyle: "normal",
+            fontWeight: 400,
             lineHeight: "normal",
             marginBottom: "2rem"
           }}>
@@ -49,9 +51,11 @@ export default function BookDetails({ book, year, category, onBack }) {
       case 'author':
         return (
           <div style={{
-            color: "#000",
-            fontFamily: '"Neue Haas Grotesk Text Pro"',
+            color: "var(--Off-Black, #474747)",
+            fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             fontSize: "18px",
+            fontStyle: "normal",
+            fontWeight: 400,
             lineHeight: "normal",
             marginBottom: "2rem"
           }}>
@@ -77,10 +81,12 @@ export default function BookDetails({ book, year, category, onBack }) {
         
         return (
           <div style={{
-            color: "#000",
-            fontFamily: '"Neue Haas Grotesk Text Pro"',
+            color: "var(--Off-Black, #474747)",
+            fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             fontSize: "18px",
-            lineHeight: "1.6",
+            fontStyle: "normal",
+            fontWeight: 400,
+            lineHeight: "normal",
             marginBottom: "2rem"
           }}>
             {/* Genre line */}
@@ -114,37 +120,43 @@ export default function BookDetails({ book, year, category, onBack }) {
             )}
           </div>
         )
-      case 'accolades':
-        return (
-          <div style={{
-            color: "#000",
-            fontFamily: '"Neue Haas Grotesk Text Pro"',
-            fontSize: "18px",
-            lineHeight: "1.6",
-            marginBottom: "2rem"
-          }}>
-            {book.accolades && book.accolades.length > 0 ? (
-              book.accolades.map((accolade, index) => (
-                <p key={index} style={{ margin: index === book.accolades.length - 1 ? "0" : "0 0 1rem 0" }}>
-                  {accolade}
-                </p>
-              ))
-            ) : (
-              <p style={{ margin: "0" }}>No accolades available.</p>
-            )}
-          </div>
-        )
       default:
         return null
     }
   }
 
   return (
-    <div>
+    <div 
+      style={{ 
+        width: "100%",
+        height: "100%",
+        backgroundColor: "white",
+        padding: "32px 16px 32px 32px",
+        boxSizing: "border-box"
+      }}
+    >
+      <div 
+        style={{ 
+          width: "100%",
+          height: "100%",
+          maxWidth: "1920px",
+          maxHeight: "1080px",
+          padding: "32px 16px 16px 32px",
+          backgroundColor: "white",
+          margin: "0 auto",
+          position: "relative"
+        }}
+      >
+        <div style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%"
+        }}>
       {/* Title with back button */}
       <div style={{
-        color: "#000",
-        fontFamily: '"New Spirit"',
+        color: "var(--Off-Black, #474747)",
+        fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
         fontSize: "18px",
         fontStyle: "normal",
         fontWeight: 600,
@@ -159,8 +171,8 @@ export default function BookDetails({ book, year, category, onBack }) {
           style={{
             background: "none",
             border: "none",
-            color: "#000",
-            fontFamily: '"New Spirit"',
+            color: "var(--Off-Black, #474747)",
+            fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
             fontSize: "18px",
             fontStyle: "normal",
             fontWeight: 600,
@@ -203,19 +215,21 @@ export default function BookDetails({ book, year, category, onBack }) {
           {/* Title */}
           <div>
             <h1 style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "32px",
-              fontWeight: 600,
-              lineHeight: "1.2",
+              fontStyle: "italic",
+              fontWeight: 500,
+              lineHeight: "normal",
               margin: "0 0 0.5rem 0"
             }}>
               {book.title}
             </h1>
             <p style={{
               color: "var(--Author, #4F4F4F)",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
+              fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "18px",
+              fontStyle: "normal",
               fontWeight: 400,
               lineHeight: "normal",
               margin: "0"
@@ -227,16 +241,20 @@ export default function BookDetails({ book, year, category, onBack }) {
           {/* Description */}
           <div>
             <h2 style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
-              fontSize: "24px",
-              fontWeight: 600,
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "normal",
               margin: "0 0 1rem 0"
             }}>Description</h2>
             <div style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: 400,
               lineHeight: "normal",
               marginBottom: "2rem"
             }}>
@@ -260,16 +278,20 @@ export default function BookDetails({ book, year, category, onBack }) {
           {/* Author */}
           <div>
             <h2 style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
-              fontSize: "24px",
-              fontWeight: 600,
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "normal",
               margin: "0 0 1rem 0"
             }}>Author</h2>
             <div style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: 400,
               lineHeight: "normal",
               marginBottom: "2rem"
             }}>
@@ -280,14 +302,16 @@ export default function BookDetails({ book, year, category, onBack }) {
           {/* Book Details */}
           <div>
             <h2 style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
-              fontSize: "24px",
-              fontWeight: 600,
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "normal",
               margin: "0 0 1rem 0"
             }}>Book Details</h2>
             <div style={{
-              color: "#000",
+              color: "var(--Off-Black, #474747)",
               fontFamily: '"Neue Haas Grotesk Text Pro"',
               fontSize: "18px",
               lineHeight: "1.6",
@@ -339,33 +363,6 @@ export default function BookDetails({ book, year, category, onBack }) {
             </div>
           </div>
           
-          {/* Accolades */}
-          <div>
-            <h2 style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
-              fontSize: "24px",
-              fontWeight: 600,
-              margin: "0 0 1rem 0"
-            }}>Accolades</h2>
-            <div style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
-              fontSize: "18px",
-              lineHeight: "1.6",
-              marginBottom: "2rem"
-            }}>
-              {book.accolades && book.accolades.length > 0 ? (
-                book.accolades.map((accolade, index) => (
-                  <p key={index} style={{ margin: index === book.accolades.length - 1 ? "0" : "0 0 1rem 0" }}>
-                    {accolade}
-                  </p>
-                ))
-              ) : (
-                <p style={{ margin: "0" }}>No accolades available.</p>
-              )}
-            </div>
-          </div>
         </div>
       ) : (
         /* Desktop Layout - Grid */
@@ -405,8 +402,8 @@ export default function BookDetails({ book, year, category, onBack }) {
           {/* Title and author */}
           <div style={{ marginBottom: "2rem" }}>
             <h1 style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "32px",
               fontStyle: "italic",
               fontWeight: 500,
@@ -416,8 +413,8 @@ export default function BookDetails({ book, year, category, onBack }) {
               {book.title}
             </h1>
             <p style={{
-              color: "#000",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "18px",
               fontStyle: "normal",
               fontWeight: 400,
@@ -440,17 +437,17 @@ export default function BookDetails({ book, year, category, onBack }) {
             width: "100%",
             maxWidth: "608px"
           }}>
-            {['description', 'author', 'book-details', 'accolades'].map((tab) => (
+            {['description', 'author', 'book-details'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 style={{
                   background: "none",
                   border: "none",
-                  color: activeTab === tab ? "#000" : "#474747",
-                  fontFamily: '"Neue Haas Grotesk Text Pro"',
+                  color: activeTab === tab ? "var(--Off-Black, #474747)" : "#474747",
+                  fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                   fontSize: "18px",
-                  fontWeight: activeTab === tab ? 700 : 400,
+                  fontWeight: 400,
                   lineHeight: "normal",
                   cursor: "pointer",
                   textTransform: "capitalize",
@@ -474,6 +471,8 @@ export default function BookDetails({ book, year, category, onBack }) {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </div>
   )
 }

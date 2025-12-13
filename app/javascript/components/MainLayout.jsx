@@ -100,7 +100,7 @@ export default function MainLayout({ currentPage, clearBookState, booksCache, ca
           {/* Image - full width */}
           <div style={{ width: "100%", marginBottom: "2rem" }}>
             <img
-              src="/images/landing_page.png"
+              src="/images/landing-page.png"
               alt="Landing page illustration"
               style={{
                 width: "100%",

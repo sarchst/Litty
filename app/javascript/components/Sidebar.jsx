@@ -89,17 +89,28 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
     <div style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden", position: "relative" }}>
       {!isInMenu && (
         <div style={{ 
-          padding: "1rem", 
+          paddingTop: "32px",
+          paddingLeft: "16px", 
+          paddingBottom: "32px",
+          paddingRight: "48px",
           borderRight: "1px solid #474747",
           borderBottom: "1px solid #474747",
-          height: "200px",
+          minHeight: "200px",
           display: "flex",
-          flexDirection: "column"
+          flexDirection: "column",
+          backgroundColor: "white"
         }}>
-          <div style={{
-            width: "71%",
-            fontSize: "16px"
-          }}>
+          <div 
+            className="tk-neue-haas-grotesk-text"
+            style={{
+              width: "100%",
+              color: "var(--Off-Black, #474747)",
+              fontFamily: '"neue-haas-grotesk-text", "Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              fontSize: "16px",
+              fontStyle: "normal",
+              fontWeight: 300,
+              lineHeight: "normal",
+            }}>
             <text>We checked the lists so you don't have to. We gather the most trusted end-of-year book lists from critics, publishers, and reviewers, then bring them together in one place. No endless scrolling—just the books worth your time, all neatly in one spot</text>
           </div>
         </div>
@@ -142,10 +153,12 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
               onMouseLeave={(e) => e.target.style.backgroundColor = "white"}
             >
               <div style={{
-                fontFamily: "'Playfair Display', serif",
+                color: "var(--Off-Black, #474747)",
+                fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                fontSize: "16px",
+                fontStyle: "normal",
                 fontWeight: 600,
-                fontSize: "18px",
-                color: "#474747"
+                lineHeight: "normal"
               }}>
                 {year}
               </div>
@@ -192,10 +205,12 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                     onMouseLeave={(e) => e.target.style.opacity = "1"}
                   >
                     <div style={{
-                      fontFamily: "'Playfair Display', serif",
+                      color: "var(--Off-Black, #474747)",
+                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                      fontSize: "16px",
+                      fontStyle: "normal",
                       fontWeight: 600,
-                      fontSize: "18px",
-                      color: "#474747"
+                      lineHeight: "normal"
                     }}>
                       FICTION
                     </div>
@@ -208,8 +223,8 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                     >
                       <span style={{
                         color: "var(--Off-Black, #474747)",
-                        fontFamily: '"Suisse Int\'l"',
-                        fontSize: "14px",
+                        fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                        fontSize: "12px",
                         fontStyle: "normal",
                         fontWeight: 400,
                         lineHeight: "normal"
@@ -219,7 +234,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                       <span style={{ fontSize: "16px", color: "#474747" }}>›</span>
                     </div>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     {booksByYear[year].fiction
                       .slice()
                       .sort((a, b) => (a.ranking || 0) - (b.ranking || 0))
@@ -250,10 +265,10 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                             width: "52%",
                             paddingLeft: "0.05%",
                             color: "var(--Off-Black, #474747)",
-                            fontFamily: '"Neue Haas Grotesk Text Pro"',
-                            fontSize: "16px",
+                            fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                            fontSize: "14px",
                             fontStyle: "italic",
-                            fontWeight: 500,
+                            fontWeight: 400,
                             lineHeight: "normal"
                           }}
                         >
@@ -263,10 +278,10 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                           style={{
                             width: "48%",
                             color: "var(--Author, #4F4F4F)",
-                            fontFamily: '"Neue Haas Grotesk Text Pro"',
-                            fontSize: "16px",
+                            fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                            fontSize: "14px",
                             fontStyle: "normal",
-                            fontWeight: 400,
+                            fontWeight: 300,
                             lineHeight: "normal"
                           }}
                         >
@@ -295,10 +310,12 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                     onMouseLeave={(e) => e.target.style.opacity = "1"}
                   >
                     <div style={{
-                      fontFamily: "'Playfair Display', serif",
+                      color: "var(--Off-Black, #474747)",
+                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                      fontSize: "16px",
+                      fontStyle: "normal",
                       fontWeight: 600,
-                      fontSize: "18px",
-                      color: "#474747"
+                      lineHeight: "normal"
                     }}>
                       NON-FICTION
                     </div>
@@ -311,8 +328,8 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                     >
                       <span style={{
                         color: "var(--Off-Black, #474747)",
-                        fontFamily: '"Suisse Int\'l"',
-                        fontSize: "14px",
+                        fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                        fontSize: "12px",
                         fontStyle: "normal",
                         fontWeight: 400,
                         lineHeight: "normal"
@@ -322,7 +339,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                       <span style={{ fontSize: "16px", color: "#474747" }}>›</span>
                     </div>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     {booksByYear[year].nonfiction
                       .slice()
                       .sort((a, b) => (a.ranking || 0) - (b.ranking || 0))
@@ -353,10 +370,10 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                             width: "52%",
                             paddingLeft: "0.05%",
                             color: "var(--Off-Black, #474747)",
-                            fontFamily: '"Neue Haas Grotesk Text Pro"',
-                            fontSize: "16px",
+                            fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                            fontSize: "14px",
                             fontStyle: "italic",
-                            fontWeight: 500,
+                            fontWeight: 400,
                             lineHeight: "normal"
                           }}
                         >
@@ -366,10 +383,10 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                           style={{
                             width: "48%",
                             color: "var(--Author, #4F4F4F)",
-                            fontFamily: '"Neue Haas Grotesk Text Pro"',
-                            fontSize: "16px",
+                            fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                            fontSize: "14px",
                             fontStyle: "normal",
-                            fontWeight: 400,
+                            fontWeight: 300,
                             lineHeight: "normal"
                           }}
                         >
