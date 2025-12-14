@@ -307,14 +307,15 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
               {/* Menu Content */}
               <div onClick={(e) => e.stopPropagation()}>
                 {/* Navigation Buttons */}
-                <div style={{ padding: "2rem 1rem", marginBottom: "1rem" }}>
+                <div style={{ padding: "2rem 1rem 1rem 1rem", marginBottom: "1rem" }}>
                   <div
+                    className="tk-new-spirit"
                     onClick={() => handleNavClick('the-project')}
                     style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontWeight: "normal",
-                      fontSize: "24px",
-                      color: "#474747",
+                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                      fontWeight: 600,
+                      fontSize: "16px",
+                      color: "var(--Off-Black, #474747)",
                       cursor: "pointer",
                       padding: "1rem 0",
                       transition: "opacity 0.2s ease"
@@ -325,12 +326,13 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                     THE PROJECT
                   </div>
                   <div
+                    className="tk-new-spirit"
                     onClick={() => handleNavClick('blog')}
                     style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontWeight: "normal",
-                      fontSize: "24px",
-                      color: "#474747",
+                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                      fontWeight: 600,
+                      fontSize: "16px",
+                      color: "var(--Off-Black, #474747)",
                       cursor: "pointer",
                       padding: "1rem 0",
                       transition: "opacity 0.2s ease"
@@ -341,12 +343,13 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                     BLOG
                   </div>
                   <div
+                    className="tk-new-spirit"
                     onClick={() => handleNavClick('about-us')}
                     style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontWeight: "normal",
-                      fontSize: "24px",
-                      color: "#474747",
+                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                      fontWeight: 600,
+                      fontSize: "16px",
+                      color: "var(--Off-Black, #474747)",
                       cursor: "pointer",
                       padding: "1rem 0",
                       transition: "opacity 0.2s ease"
@@ -362,11 +365,12 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                 <div>
                   {/* SEE THE BEST OF Header - not clickable */}
                   <div
+                    className="tk-new-spirit"
                     style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "#474747",
+                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                      fontWeight: 600,
+                      fontSize: "16px",
+                      color: "var(--Off-Black, #474747)",
                       padding: "8px 16px",
                       borderTop: "1px solid #474747",
                       borderBottom: "1px solid #474747",

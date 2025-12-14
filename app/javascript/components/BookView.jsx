@@ -174,9 +174,7 @@ export default function BookView({
                   marginBottom: "1rem",
                   position: "relative",
                   width: "100%",
-                  maxWidth: isMobile ? "none" : "200px",
-                  height: isMobile ? "auto" : "300px",
-                  aspectRatio: isMobile ? "2/3" : "auto", // Book aspect ratio for mobile
+                  aspectRatio: "2/3", // Consistent book aspect ratio for all screen sizes
                   margin: "0 auto 1rem auto"
                 }}>
                   <img
@@ -184,8 +182,7 @@ export default function BookView({
                     alt={`${book.title} cover`}
                     style={{
                       width: "100%",
-                      height: isMobile ? "auto" : "100%",
-                      aspectRatio: isMobile ? "2/3" : "auto", // Maintain book proportions on mobile
+                      height: "100%",
                       objectFit: "cover",
                       borderRadius: "4px",
                       boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
@@ -213,10 +210,11 @@ export default function BookView({
                   }}>
                     <div style={{
                       color: "var(--Off-Black, #474747)",
-                      fontFamily: '"Neue Haas Grotesk Text Pro"',
-                      fontSize: "14px",
-                      fontWeight: 500,
-                      lineHeight: "1.4",
+                      fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                      fontSize: "16px",
+                      fontStyle: "normal",
+                      fontWeight: 300,
+                      lineHeight: "normal",
                       maxHeight: "200px",
                       overflow: "hidden",
                       textOverflow: "ellipsis"

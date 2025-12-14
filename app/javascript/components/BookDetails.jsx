@@ -312,9 +312,11 @@ export default function BookDetails({ book, year, category, onBack }) {
             }}>Book Details</h2>
             <div style={{
               color: "var(--Off-Black, #474747)",
-              fontFamily: '"Neue Haas Grotesk Text Pro"',
+              fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "18px",
-              lineHeight: "1.6",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "normal",
               marginBottom: "2rem"
             }}>
               {(() => {

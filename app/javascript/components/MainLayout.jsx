@@ -85,9 +85,11 @@ export default function MainLayout({ currentPage, clearBookState, booksCache, ca
         {/* Title and Image with padding */}
         <div style={{ padding: "0.5rem" }}>
           {/* Title - full width, left aligned */}
-          <h2 style={{
+          <h2 
+            className="tk-new-spirit"
+            style={{
             color: "var(--Off-Black, #474747)",
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
             fontSize: "48px",
             fontStyle: "normal",
             fontWeight: 600,
