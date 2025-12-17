@@ -47,14 +47,14 @@ export default function LandingPage() {
         
         {/* Landing page image - flush bottom right corner */}
         <img
-          src="/images/landing-page.png"
+          src="/images/landing-kitty.png"
           alt="Landing page illustration"
           style={{
             position: "absolute",
             bottom: "0",
             right: "0",
-            maxWidth: "300px",
-            maxHeight: "300px",
+            maxWidth: "428px",
+            maxHeight: "428px",
             objectFit: "contain"
           }}
         />

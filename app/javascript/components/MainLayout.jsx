@@ -89,24 +89,27 @@ export default function MainLayout({ currentPage, clearBookState, booksCache, ca
             className="tk-new-spirit"
             style={{
             color: "var(--Off-Black, #474747)",
-            fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+            fontFamily: '"new-spirit", "Playfair Display", serif',
             fontSize: "48px",
             fontStyle: "normal",
             fontWeight: 600,
-            lineHeight: "1.2",
-            margin: "0 0 2rem 0",
+            lineHeight: "47px",
+            margin: "1.5rem 0 2rem 0",
             textAlign: "left",
-            width: "100%"
+            width: "100%",
+            transform: "scaleX(0.75)",
+            transformOrigin: "left center",
+            display: "inline-block"
           }}>Find the books everyone's talking about.</h2>
           
           {/* Image - full width */}
           <div style={{ width: "100%", marginBottom: "2rem" }}>
             <img
-              src="/images/landing-page.png"
+              src="/images/landing-kitty.png"
               alt="Landing page illustration"
               style={{
                 width: "100%",
-                maxHeight: "300px",
+                maxHeight: "385px",
                 objectFit: "contain"
               }}
             />
