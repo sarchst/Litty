@@ -3,23 +3,23 @@
       rows = CSV.read(csv_path, headers: true)
       rows.each do |row|
         unless Book.find_by(isbn: row["ISBN"])
-          genre = row["BISAC_Category_Description"]
+          genre = row["BISAC_Category_Description"] # DONE
           
           attributes = {
-            isbn: row["ISBN"],
-            title: row["Title"],
-            publisher: row["Publisher_Name"],
-            published_at: row["PubDate"],
-            genres: genre&.split("/"),
-            page_count: row["Number_of_Pages"],
-            description: row["Long_Summary"],
-            short_summary: row["Short_Summary"],
-            authors: row["Author_Full"],
-            subtitle: row["Subtitle"],
-            series: row["Series"],
-            primary_quotes: row["Copy_Quotes"]&.split("\n"),
-            accolades: row["Awards_&_Accolades"]&.split("\n"),
-            author_bio: row["Copy_Bio"],
+            isbn: row["ISBN"], # DONE
+            title: row["Title"], # DONE
+            publisher: row["Publisher_Name"], # DONE
+            published_at: row["PubDate"], # DONE
+            genres: genre&.split("/"), # DONE
+            page_count: row["Number_of_Pages"], # DONE
+            description: row["Refined_Long_Summary"], # DONE
+            short_summary: row["Refined_Short_Summary"], # DONE
+            authors: row["Author_Full"], # DONE
+            subtitle: row["Subtitle"], # DONE
+            series: row["Series"], # DONE
+            primary_quotes: row["Formatted_Quotes"]&.split("\n"), # DONE
+            accolades: row["Awards_&_Accolades"]&.split("\n"), # DONE
+            author_bio: row["Refined_Bio"], # DONE
             top_5: row["YEAR_RANK"].to_i <= 5,
             is_fiction: genre&.include?("Fiction"),
             ranking: row["YEAR_RANK"].to_i,

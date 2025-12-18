@@ -2,7 +2,7 @@ require "open-uri"
 
 class SaveImagesService
   def self.call
-    save_path = File.expand_path("~/Desktop/book_covers")
+    save_path = Rails.root.join("public", "book_covers").to_s
     success_count = 0
     error_count = 0
     
