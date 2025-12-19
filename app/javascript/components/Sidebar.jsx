@@ -237,7 +237,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     {booksByYear[year].fiction
                       .slice()
-                      .sort((a, b) => (a.ranking || 0) - (b.ranking || 0))
+                      .sort((a, b) => (a.year_rank || 0) - (b.year_rank || 0))
                       .map((book, index) => (
                       <div 
                         key={book.id || index} 
@@ -342,7 +342,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     {booksByYear[year].nonfiction
                       .slice()
-                      .sort((a, b) => (a.ranking || 0) - (b.ranking || 0))
+                      .sort((a, b) => (a.year_rank || 0) - (b.year_rank || 0))
                       .map((book, index) => (
                       <div 
                         key={book.id || index} 

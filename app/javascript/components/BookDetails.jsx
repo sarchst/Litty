@@ -32,9 +32,12 @@ export default function BookDetails({ book, year, category, onBack }) {
             lineHeight: "normal",
             marginBottom: "2rem"
           }}>
-            <div style={{ marginBottom: "2rem" }}>
-              {book.description || "No description available."}
-            </div>
+              <div 
+                style={{ marginBottom: "2rem" }}
+                dangerouslySetInnerHTML={{ 
+                  __html: book.description || "No description available." 
+                }}
+              />
             {book.primary_quotes && book.primary_quotes.length > 0 && (
               <div>
                 {book.primary_quotes.map((quote, index) => (
@@ -109,13 +112,13 @@ export default function BookDetails({ book, year, category, onBack }) {
             )}
             
             {/* Placement line */}
-            {book.ranking && (
+            {book.year_rank && (
               <p style={{ margin: "0" }}>
-                Litty's Ranking — #{book.ranking}
+                Litty's Ranking — #{book.global_rank}
               </p>
             )}
             
-            {!categoryText && !book.publisher && !publishedDate && !book.page_count && !book.ranking && (
+            {!categoryText && !book.publisher && !publishedDate && !book.page_count && !book.year_rank && (
               <p style={{ margin: "0" }}>No book details available.</p>
             )}
           </div>
@@ -258,9 +261,12 @@ export default function BookDetails({ book, year, category, onBack }) {
               lineHeight: "normal",
               marginBottom: "2rem"
             }}>
-              <div style={{ marginBottom: "2rem" }}>
-                {book.description || "No description available."}
-              </div>
+              <div 
+                style={{ marginBottom: "2rem" }}
+                dangerouslySetInnerHTML={{ 
+                  __html: book.description || "No description available." 
+                }}
+              />
               {book.primary_quotes && book.primary_quotes.length > 0 && (
                 <div>
                   {book.primary_quotes.map((quote, index) => (
@@ -351,12 +357,12 @@ export default function BookDetails({ book, year, category, onBack }) {
                         Length — {book.page_count} pages
                       </p>
                     )}
-                    {book.ranking && (
+                    {book.year_rank && (
                       <p style={{ margin: "0" }}>
-                        Litty's Ranking — #{book.ranking}
+                        Litty's Ranking — #{book.global_rank}
                       </p>
                     )}
-                    {!categoryText && !book.publisher && !publishedDate && !book.page_count && !book.ranking && (
+                    {!categoryText && !book.publisher && !publishedDate && !book.page_count && !book.year_rank && (
                       <p style={{ margin: "0" }}>No book details available.</p>
                     )}
                   </>

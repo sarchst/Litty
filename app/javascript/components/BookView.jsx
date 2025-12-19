@@ -151,7 +151,7 @@ export default function BookView({
       }}>
         {books
           .slice()
-          .sort((a, b) => (a.ranking || 0) - (b.ranking || 0))
+          .sort((a, b) => (a.year_rank || 0) - (b.year_rank || 0))
           .map((book, index) => {
           const bookId = book.id || index
           const isHovered = hoveredBookId === bookId
@@ -225,7 +225,7 @@ export default function BookView({
                 </div>
               )}
               
-              {/* Book title with ranking */}
+              {/* Book title with year_rank */}
               <div style={{
                 color: "var(--Off-Black, #474747)",
                 textAlign: "center",
@@ -236,7 +236,7 @@ export default function BookView({
                 lineHeight: "normal",
                 marginBottom: "0.5rem"
               }}>
-                {book.ranking ? `${book.ranking}. ` : ""}{book.title}
+                {book.year_rank ? `${book.year_rank}. ` : ""}{book.title}
               </div>
               
               {/* Author */}
