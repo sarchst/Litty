@@ -224,10 +224,23 @@ export default function BookDetails({ book, year, category, onBack }) {
               fontStyle: "italic",
               fontWeight: 500,
               lineHeight: "normal",
-              margin: "0 0 0.5rem 0"
+              margin: "0"
             }}>
               {book.title}
             </h1>
+            {book.subtitle && (
+              <h2 style={{
+                color: "var(--Off-Black, #474747)",
+                fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                fontSize: "25px",
+                fontStyle: "italic",
+                fontWeight: 400,
+                lineHeight: "normal",
+                margin: "0 0 0.5rem 0"
+              }}>
+                {book.subtitle}
+              </h2>
+            )}
             <p style={{
               color: "var(--Author, #4F4F4F)",
               fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -416,10 +429,23 @@ export default function BookDetails({ book, year, category, onBack }) {
               fontStyle: "italic",
               fontWeight: 500,
               lineHeight: "normal",
-              margin: "0 0 0.5rem 0"
+              margin: "0"
             }}>
               {book.title}
             </h1>
+            {book.subtitle && (
+              <h2 style={{
+                color: "var(--Off-Black, #474747)",
+                fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                fontSize: "25px",
+                fontStyle: "italic",
+                fontWeight: 400,
+                lineHeight: "normal",
+                margin: "0 0 0.5rem 0"
+              }}>
+                {book.subtitle}
+              </h2>
+            )}
             <p style={{
               color: "var(--Off-Black, #474747)",
               fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
