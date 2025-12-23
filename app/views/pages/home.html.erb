@@ -1,1 +1,4 @@
-<div id="react-root"></div>
+<% 
+  site_accessible = ENV['WEBSITE_LIVE'].present? || session[:preview_access]
+%>
+<div id="react-root" data-website-live="<%= site_accessible ? 'true' : 'false' %>"></div>

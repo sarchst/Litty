@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 
-export default function Header({ onNavigate, booksCache, cacheLoading, onBookSelect, onSeeAll }) {
+export default function Header({ onNavigate, booksCache, cacheLoading, onBookSelect, onSeeAll, websiteLive = true }) {
   const [isMobile, setIsMobile] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -85,7 +85,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
       </div>
       
       {/* Navigation */}
-      {!isMobile ? (
+      {websiteLive && !isMobile ? (
         // Desktop Navigation Frame
         <div style={{ 
           display: "flex", 
@@ -163,7 +163,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
             ABOUT US
           </div>
         </div>
-      ) : (
+      ) : websiteLive && isMobile ? (
         // Mobile Menu
         <div style={{ 
           display: "flex", 
@@ -403,7 +403,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
             </div>
           )}
         </div>
-      )}
+      ) : null}
     </div>
   )
 }
