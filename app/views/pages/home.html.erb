@@ -1,4 +1,6 @@
 <% 
-  site_accessible = ENV['WEBSITE_LIVE'].present? || session[:preview_access]
+  # Check if WEBSITE_LIVE is set to a truthy value (not just present)
+  website_live = ENV['WEBSITE_LIVE'].to_s.downcase == 'true'
+  site_accessible = website_live || session[:preview_access]
 %>
 <div id="react-root" data-website-live="<%= site_accessible ? 'true' : 'false' %>"></div>
