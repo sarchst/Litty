@@ -146,7 +146,7 @@ export default function BookView({
       <div style={{
         display: "grid",
         gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
-        gap: isMobile ? "24px" : "36px",
+        gap: isMobile ? "24px" : "32px",
         marginBottom: "2rem"
       }}>
         {books
@@ -196,7 +196,7 @@ export default function BookView({
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundColor: "rgba(255, 255, 255, 0.9)",
+                    backgroundColor: "rgba(255, 255, 255, 0.925)",
                     borderRadius: "4px",
                     display: "flex",
                     flexDirection: "column",

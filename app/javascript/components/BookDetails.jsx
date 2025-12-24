@@ -4,6 +4,11 @@ export default function BookDetails({ book, year, category, onBack }) {
   const [activeTab, setActiveTab] = useState('description')
   const [isMobile, setIsMobile] = useState(false)
 
+  // Reset to description tab when book changes
+  useEffect(() => {
+    setActiveTab('description')
+  }, [book?.id])
+
   // Mobile detection
   useEffect(() => {
     const checkScreenSize = () => {
@@ -44,12 +49,12 @@ export default function BookDetails({ book, year, category, onBack }) {
                   color: "var(--Off-Black, #474747)",
                   fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                   fontSize: "18px",
-                  fontStyle: "italic",
+                  fontStyle: "normal",
                   fontWeight: 700,
                   lineHeight: "normal",
                   margin: "0 0 1rem 0"
                 }}>
-                  Praise for {book.title}
+                  Praise for <span style={{ fontStyle: "italic" }}>{book.title}</span>
                 </h3>
                 {book.primary_quotes.map((quote, index) => (
                   <p key={index} style={{ 
@@ -105,27 +110,34 @@ export default function BookDetails({ book, year, category, onBack }) {
           }}>
             {/* Genre line */}
             <p style={{ margin: "0 0 1rem 0" }}>
-              Genre — {categoryText && genresList ? `${categoryText} · ${genresList}` : categoryText || genresList}
+              Genre: {categoryText && genresList ? `${categoryText} · ${genresList}` : categoryText || genresList}
             </p>
             
-            {/* Published line */}
-            {(book.publisher || publishedDate) && (
+            {/* Publisher line */}
+            {book.publisher && (
               <p style={{ margin: "0 0 1rem 0" }}>
-                Published{book.publisher && ` by ${book.publisher}`}{publishedDate && ` on ${publishedDate}`}
+                Publisher: {book.publisher}
+              </p>
+            )}
+            
+            {/* Published Date line */}
+            {publishedDate && (
+              <p style={{ margin: "0 0 1rem 0" }}>
+                Published Date: {publishedDate}
               </p>
             )}
             
             {/* Length line */}
             {book.page_count && (
               <p style={{ margin: "0 0 1rem 0" }}>
-                Length — {book.page_count} pages
+                Length: {book.page_count} pages
               </p>
             )}
             
             {/* Placement line */}
             {book.year_rank && (
               <p style={{ margin: "0" }}>
-                Litty's Ranking — #{book.global_rank}
+                Litty's Ranking: #{book.global_rank}
               </p>
             )}
             
@@ -297,12 +309,12 @@ export default function BookDetails({ book, year, category, onBack }) {
                     color: "var(--Off-Black, #474747)",
                     fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                     fontSize: "18px",
-                    fontStyle: "italic",
+                    fontStyle: "normal",
                     fontWeight: 700,
                     lineHeight: "normal",
                     margin: "0 0 1rem 0"
                   }}>
-                    Praise for {book.title}
+                    Praise for <span style={{ fontStyle: "italic" }}>{book.title}</span>
                   </h3>
                   {book.primary_quotes.map((quote, index) => (
                     <p key={index} style={{ 
@@ -380,21 +392,26 @@ export default function BookDetails({ book, year, category, onBack }) {
                 return (
                   <>
                     <p style={{ margin: "0 0 1rem 0" }}>
-                      Genre — {categoryText && genresList ? `${categoryText} · ${genresList}` : categoryText || genresList}
+                      Genre: {categoryText && genresList ? `${categoryText} · ${genresList}` : categoryText || genresList}
                     </p>
-                    {(book.publisher || publishedDate) && (
+                    {book.publisher && (
                       <p style={{ margin: "0 0 1rem 0" }}>
-                        Published{book.publisher && ` by ${book.publisher}`}{publishedDate && ` on ${publishedDate}`}
+                        Publisher: {book.publisher}
+                      </p>
+                    )}
+                    {publishedDate && (
+                      <p style={{ margin: "0 0 1rem 0" }}>
+                        Published Date: {publishedDate}
                       </p>
                     )}
                     {book.page_count && (
                       <p style={{ margin: "0 0 1rem 0" }}>
-                        Length — {book.page_count} pages
+                        Length: {book.page_count} pages
                       </p>
                     )}
                     {book.year_rank && (
                       <p style={{ margin: "0" }}>
-                        Litty's Ranking — #{book.global_rank}
+                        Litty's Ranking: #{book.global_rank}
                       </p>
                     )}
                     {!categoryText && !book.publisher && !publishedDate && !book.page_count && !book.year_rank && (
@@ -503,7 +520,7 @@ export default function BookDetails({ book, year, category, onBack }) {
                   color: activeTab === tab ? "var(--Off-Black, #474747)" : "#474747",
                   fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                   fontSize: "18px",
-                  fontWeight: 400,
+                  fontWeight: activeTab === tab ? 700 : 400,
                   lineHeight: "normal",
                   cursor: "pointer",
                   textTransform: "capitalize",

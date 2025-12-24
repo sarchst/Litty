@@ -224,7 +224,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                       <span style={{
                         color: "var(--Off-Black, #474747)",
                         fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                        fontSize: "12px",
+                        fontSize: "14px",
                         fontStyle: "normal",
                         fontWeight: 400,
                         lineHeight: "normal"
@@ -266,7 +266,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                             paddingLeft: "0.05%",
                             color: "var(--Off-Black, #474747)",
                             fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                            fontSize: "14px",
+                            fontSize: "16px",
                             fontStyle: "italic",
                             fontWeight: 400,
                             lineHeight: "normal"
@@ -279,7 +279,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                             width: "48%",
                             color: "var(--Author, #4F4F4F)",
                             fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                            fontSize: "14px",
+                            fontSize: "16px",
                             fontStyle: "normal",
                             fontWeight: 300,
                             lineHeight: "normal"
@@ -329,7 +329,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                       <span style={{
                         color: "var(--Off-Black, #474747)",
                         fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                        fontSize: "12px",
+                        fontSize: "14px",
                         fontStyle: "normal",
                         fontWeight: 400,
                         lineHeight: "normal"
@@ -371,7 +371,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                             paddingLeft: "0.05%",
                             color: "var(--Off-Black, #474747)",
                             fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                            fontSize: "14px",
+                            fontSize: "16px",
                             fontStyle: "italic",
                             fontWeight: 400,
                             lineHeight: "normal"
@@ -384,7 +384,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                             width: "48%",
                             color: "var(--Author, #4F4F4F)",
                             fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                            fontSize: "14px",
+                            fontSize: "16px",
                             fontStyle: "normal",
                             fontWeight: 300,
                             lineHeight: "normal"
@@ -421,8 +421,8 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
             src={hoveredBook.cover_image_url}
             alt={`${hoveredBook.title} cover`}
             style={{
-              width: "60px",
-              height: "90px",
+              width: "90px",
+              height: "135px",
               objectFit: "cover",
               borderRadius: "4px",
               boxShadow: "0 4px 12px rgba(0,0,0,0.3)"
