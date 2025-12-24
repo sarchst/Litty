@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Sidebar from './Sidebar'
 
 export default function Header({ onNavigate, booksCache, cacheLoading, onBookSelect, onSeeAll, websiteLive = true }) {
   const [isMobile, setIsMobile] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const logoRef = useRef(null)
+  const menuLogoRef = useRef(null)
 
   // Check if screen is mobile size
   useEffect(() => {
@@ -15,6 +17,28 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
     window.addEventListener('resize', checkScreenSize)
     
     return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
+  // Force GIF to loop continuously by reloading it with cache-busting parameter
+  useEffect(() => {
+    const restartGif = (imgRef) => {
+      if (imgRef?.current) {
+        const img = imgRef.current
+        // Use cache-busting query parameter to force reload and restart animation
+        const baseSrc = img.src.split('?')[0]
+        img.src = `${baseSrc}?t=${Date.now()}`
+      }
+    }
+
+    // Restart GIFs every 10 seconds to ensure continuous looping
+    // This reloads the GIF to restart the animation cycle
+    // Adjust the interval based on your GIF's animation duration
+    const interval = setInterval(() => {
+      restartGif(logoRef)
+      restartGif(menuLogoRef)
+    }, 10000)
+
+    return () => clearInterval(interval)
   }, [])
 
   // Note: Removed click-outside-to-close functionality
@@ -51,37 +75,17 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
         }}
         onClick={() => onNavigate('home')}
       >
-        {/* Logo Icon - 32x32 */}
+        {/* Animated Logo */}
         <img
-          src="/images/litty-icon.png"
+          ref={logoRef}
+          src="/images/animated-logo.gif"
           alt="Litty Logo"
           style={{
-            width: "32px",
             height: "32px",
+            width: "auto",
             flexShrink: 0
           }}
         />
-        {/* LITTY Text - 60x23 with 8px left gap and 4.5px top/bottom padding */}
-        <div
-          className="tk-new-spirit"
-          style={{
-            marginLeft: "8px",
-            padding: "4.5px 0",
-            width: "60px",
-            height: "23px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "var(--Off-Black, #474747)",
-            fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
-            fontSize: "18px",
-            fontStyle: "normal",
-            fontWeight: 600,
-            lineHeight: "normal"
-          }}
-        >
-          LITTY
-        </div>
       </div>
       
       {/* Navigation */}
@@ -235,37 +239,17 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                     onNavigate('home')
                   }}
                 >
-                  {/* Logo Icon - 32x32 */}
+                  {/* Animated Logo */}
                   <img
-                    src="/images/litty-icon.png"
+                    ref={menuLogoRef}
+                    src="/images/animated-logo.gif"
                     alt="Litty Logo"
                     style={{
-                      width: "32px",
                       height: "32px",
+                      width: "auto",
                       flexShrink: 0
                     }}
                   />
-                  {/* LITTY Text - 60x23 with 8px left gap and 4.5px top/bottom padding */}
-                  <div
-                    className="tk-new-spirit"
-                    style={{
-                      marginLeft: "8px",
-                      padding: "4.5px 0",
-                      width: "60px",
-                      height: "23px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "var(--Off-Black, #474747)",
-                      fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
-                      fontSize: "18px",
-                      fontStyle: "normal",
-                      fontWeight: 600,
-                      lineHeight: "normal"
-                    }}
-                  >
-                    LITTY
-                  </div>
                 </div>
                 
                 {/* Close button */}
