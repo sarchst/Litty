@@ -16,25 +16,34 @@ export default function TheProject() {
           width: "100%",
           minHeight: "100%",
           maxWidth: "1920px",
-          padding: "32px 16px 80px 32px",
+          maxHeight: "1080px",
+          padding: "0 16px 16px 32px",
           backgroundColor: "white",
           margin: "0 auto",
           position: "relative"
         }}
       >
-        <h1 
-          className="tk-new-spirit"
-          style={{
-            textAlign: "center",
-            fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
-            fontSize: "64px",
-            fontWeight: 600,
-            color: "var(--Off-Black, #474747)",
-            margin: "0 0 2rem 0"
-          }}
-        >
-          LITTY
-        </h1>
+        <div style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%"
+        }}>
+          <h1 
+            className="tk-new-spirit"
+            style={{
+              textAlign: "center",
+              fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+              fontSize: "64px",
+              fontWeight: 600,
+              color: "var(--Off-Black, #474747)",
+              margin: "0",
+              padding: "0",
+              lineHeight: "1"
+            }}
+          >
+            LITTY
+          </h1>
         <div style={{
           width: "608px",
           height: "750px",
@@ -81,6 +90,7 @@ export default function TheProject() {
           <p style={{ margin: "0" }}>
             Typography inspired by timeless serif traditions, adapted for the web.
           </p>
+        </div>
         </div>
       </div>
     </div>

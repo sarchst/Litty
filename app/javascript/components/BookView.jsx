@@ -211,7 +211,7 @@ export default function BookView({
                     <div style={{
                       color: "var(--Off-Black, #474747)",
                       fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                      fontSize: "14px",
+                      fontSize: "clamp(10px, 1.4vw, 14px)",
                       fontStyle: "normal",
                       fontWeight: 300,
                       lineHeight: "normal",
