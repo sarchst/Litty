@@ -40,6 +40,17 @@ export default function BookDetails({ book, year, category, onBack }) {
               />
             {book.primary_quotes && book.primary_quotes.length > 0 && (
               <div>
+                <h3 style={{
+                  color: "var(--Off-Black, #474747)",
+                  fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                  fontSize: "18px",
+                  fontStyle: "italic",
+                  fontWeight: 700,
+                  lineHeight: "normal",
+                  margin: "0 0 1rem 0"
+                }}>
+                  Praise for {book.title}
+                </h3>
                 {book.primary_quotes.map((quote, index) => (
                   <p key={index} style={{ 
                     margin: index === book.primary_quotes.length - 1 ? "0" : "0 0 1rem 0"
@@ -282,6 +293,17 @@ export default function BookDetails({ book, year, category, onBack }) {
               />
               {book.primary_quotes && book.primary_quotes.length > 0 && (
                 <div>
+                  <h3 style={{
+                    color: "var(--Off-Black, #474747)",
+                    fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                    fontSize: "18px",
+                    fontStyle: "italic",
+                    fontWeight: 700,
+                    lineHeight: "normal",
+                    margin: "0 0 1rem 0"
+                  }}>
+                    Praise for {book.title}
+                  </h3>
                   {book.primary_quotes.map((quote, index) => (
                     <p key={index} style={{ 
                       margin: index === book.primary_quotes.length - 1 ? "0" : "0 0 1rem 0"

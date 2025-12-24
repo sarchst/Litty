@@ -5,8 +5,9 @@ export default function LandingPage() {
         width: "100%",
         height: "100%",
         backgroundColor: "white",
-        padding: "32px 16px 32px 32px", // Add padding to show pink around the blue div
-        boxSizing: "border-box"
+        padding: "32px 0 0 32px", // Remove right and bottom padding for flush image
+        boxSizing: "border-box",
+        position: "relative"
       }}
     >
       <div 
@@ -15,7 +16,7 @@ export default function LandingPage() {
           height: "100%",
           maxWidth: "1920px",
           maxHeight: "1080px",
-          padding: "32px 16px 16px 32px",
+          padding: "0",
           backgroundColor: "white",
           margin: "0 auto", // Center the blue div
           position: "relative"
@@ -25,7 +26,7 @@ export default function LandingPage() {
         <h2 
           className="tk-new-spirit"
           style={{
-            width: "608px",
+            width: "auto",
             color: "var(--Off-Black, #474747)",
             fontFamily: '"new-spirit", "Playfair Display", serif',
             fontSize: "64px",
@@ -39,10 +40,11 @@ export default function LandingPage() {
             left: "0",
             transform: "scaleX(0.75)", // Condensed for elongated appearance
             transformOrigin: "left center", // Scale from left edge
-            display: "inline-block" // Ensure transform applies correctly
+            display: "inline-block", // Ensure transform applies correctly
           }}
         >
-          Find the books everyone's talking about.
+          Find the books<br />
+          everyone's talking about.
         </h2>
         
         {/* Landing page image - flush bottom right corner */}
@@ -50,11 +52,11 @@ export default function LandingPage() {
           src="/images/landing-kitty.png"
           alt="Landing page illustration"
           style={{
-            position: "absolute",
+            position: "fixed",
             bottom: "0",
             right: "0",
-            maxWidth: "428px",
-            maxHeight: "428px",
+            maxWidth: "449px",
+            maxHeight: "449px",
             objectFit: "contain"
           }}
         />

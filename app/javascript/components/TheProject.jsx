@@ -1,88 +1,86 @@
+import { translations } from '../translations'
+
 export default function TheProject() {
   return (
     <div 
       style={{ 
         width: "100%",
-        height: "100%",
+        minHeight: "100%",
         backgroundColor: "white",
-        padding: "32px 16px 32px 32px", // Same padding as landing page
+        padding: "32px 16px 80px 32px", // Same padding as landing page, with extra bottom padding
         boxSizing: "border-box"
       }}
     >
       <div 
         style={{ 
           width: "100%",
-          height: "100%",
+          minHeight: "100%",
           maxWidth: "1920px",
-          maxHeight: "1080px",
-          padding: "32px 16px 16px 32px",
+          padding: "32px 16px 80px 32px",
           backgroundColor: "white",
           margin: "0 auto",
           position: "relative"
         }}
       >
+        <h1 
+          className="tk-new-spirit"
+          style={{
+            textAlign: "center",
+            fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+            fontSize: "64px",
+            fontWeight: 600,
+            color: "var(--Off-Black, #474747)",
+            margin: "0 0 2rem 0"
+          }}
+        >
+          LITTY
+        </h1>
         <div style={{
-          position: "absolute",
-          top: "0",
-          left: "0"
+          width: "608px",
+          height: "750px",
+          margin: "0 auto 80px auto",
+          fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+          fontSize: "18px",
+          fontWeight: 400,
+          color: "var(--Off-Black, #474747)",
+          lineHeight: "1.6"
         }}>
-          {/* Title */}
-          <h1 
-            className="tk-new-spirit"
-            style={{
-              color: "var(--Off-Black, #474747)",
-              fontFamily: '"New Spirit SemiBold Condensed", "new-spirit", "Playfair Display", serif',
-              fontSize: "64px",
-              fontStyle: "normal",
-              fontWeight: 600,
-              lineHeight: "63px",
-              margin: "0",
-              transform: "scaleX(0.75)",
-              transformOrigin: "left center",
-              display: "inline-block"
-            }}
-          >
-            The Project
-          </h1>
-          
-          {/* Content container with image and text side by side */}
-          <div style={{
-            display: "flex",
-            marginTop: "64px", // 64px padding between title and content
-            gap: "2.5%", // 33px = ~2.5% of 1296px
-            width: "100%"
-          }}>
-            {/* Image - flush left */}
-            <img
-              src="/images/the-project.png"
-              alt="The Project illustration"
-              style={{
-                width: "46.8%", // 607px = ~46.8% of 1296px
-                aspectRatio: "607/256",
-                objectFit: "contain",
-                flexShrink: 0
-              }}
-            />
-            
-            {/* Text content */}
-            <div style={{
-              width: "46.9%", // 608px = ~46.9% of 1296px
-              color: "var(--Off-Black, #474747)",
-              fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-              fontSize: "24px",
-              fontStyle: "normal",
-              fontWeight: 300,
-              lineHeight: "normal",
-              flexShrink: 0
-            }}>
-              <p style={{ margin: "0 0 1rem 0" }}>
-                Lorem ipsum dolor sit amet consectetur. Quis mauris turpis non tincidunt at nulla sodales quis. Lectus scelerisque enim volutpat nulla leo etiam ipsum.
-              </p>
-              <p style={{ margin: "0" }}>
-                Cursus elementum non eget felis ac diam. Nec purus tellus in eget risus. Viverra arcu elementum scelerisque convallis potenti diam elit mauris. Mauris condimentum euismod mauris euismod tristique quisque nec sed etiam. Interdum magna quisque fermentum elit tempus sed tortor sapien.
-              </p>
-            </div>
-          </div>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            This project has been supported by countless lists, rankings, and recommendations compiled by critics, editors, and readers across the literary world.
+          </p>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            www.litty.ca
+          </p>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            Text copyright © litty 2025<br />
+            Design copyright © litty 2025
+          </p>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            The moral right of the creators has been asserted.
+          </p>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            All rights reserved. No part of this website may be reproduced or transmitted in any form or by any means, electronic or mechanical, including downloading, scraping, or archiving without prior permission in writing from the publisher.
+          </p>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            A digital anthology of aggregated literary acclaim.<br />
+            Website: litty.ca<br />
+            Instagram: @read.litty<br />
+            ISSN 978–0-0404–0000-0
+          </p>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            First Edition: December 2025
+          </p>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            Books – Rankings – Fiction and Nonfiction.<br />
+            Critics – Reviews – Aggregation.<br />
+            Reading – Modern canon – Recommendations.
+          </p>
+          <p style={{ margin: "0 0 1rem 0" }}>
+            Printed metaphorically, not literally.
+          </p>
+          <p style={{ margin: "0" }}>
+            Typography inspired by timeless serif traditions, adapted for the web.
+          </p>
         </div>
       </div>
     </div>
