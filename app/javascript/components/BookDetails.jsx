@@ -137,7 +137,7 @@ export default function BookDetails({ book, year, category, onBack }) {
             {/* Placement line */}
             {book.year_rank && (
               <p style={{ margin: "0" }}>
-                Litty's Ranking: #{book.global_rank}
+                Litty's Ranking: #{book.global_rank} in {book.is_fiction ? 'Fiction' : 'Non-Fiction'}
               </p>
             )}
             
@@ -411,7 +411,7 @@ export default function BookDetails({ book, year, category, onBack }) {
                     )}
                     {book.year_rank && (
                       <p style={{ margin: "0" }}>
-                        Litty's Ranking: #{book.global_rank}
+                        Litty's Ranking: #{book.global_rank} in {book.is_fiction ? 'Fiction' : 'Non-Fiction'}
                       </p>
                     )}
                     {!categoryText && !book.publisher && !publishedDate && !book.page_count && !book.year_rank && (

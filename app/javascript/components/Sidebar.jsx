@@ -198,7 +198,8 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                       cursor: "pointer",
                       transition: "opacity 0.2s ease"
                     }}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.target.style.opacity = "1"
                       onSeeAll(year, 'fiction')
                     }}
                     onMouseEnter={(e) => e.target.style.opacity = "0.7"}
@@ -303,7 +304,8 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                       cursor: "pointer",
                       transition: "opacity 0.2s ease"
                     }}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.target.style.opacity = "1"
                       onSeeAll(year, 'nonfiction')
                     }}
                     onMouseEnter={(e) => e.target.style.opacity = "0.7"}
