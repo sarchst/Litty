@@ -1,6 +1,6 @@
 require "open-uri"
 
-class SaveImagesService
+class SaveCoversService
   def self.call
     save_path = Rails.root.join("public", "book_covers").to_s
     success_count = 0

@@ -13,7 +13,8 @@ export default function BookView({
   const [imageLoading, setImageLoading] = useState(true)
   const [imageError, setImageError] = useState(false)
   const [hoveredBookId, setHoveredBookId] = useState(null)
-  const [isMobile, setIsMobile] = useState(false)
+  const [columns, setColumns] = useState(4)
+  const [overlayFontSize, setOverlayFontSize] = useState(14)
 
   // Reset loading state when selected book changes
   useEffect(() => {
@@ -21,14 +22,48 @@ export default function BookView({
     setImageError(false)
   }, [selectedBook?.id])
 
-  // Mobile detection
+  // Responsive column calculation: 4 → 3 → 2 based on screen width
+  // Also calculate dynamic font size: 14px at full width → 13px before switching to 3 columns
   useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768)
+    const calculateColumnsAndFontSize = () => {
+      const width = window.innerWidth
+      
+      // Calculate columns
+      if (width >= 1200) {
+        setColumns(4)
+      } else if (width >= 900) {
+        setColumns(3)
+      } else {
+        setColumns(2)
+      }
+      
+      // Calculate font size: 14px at width >= 1400, sliding to 13px at 1270, 12.25px at 1204
+      // Below 1200px: reset to 14px and interpolate to 12px at 800px
+      if (width >= 1400) {
+        setOverlayFontSize(14)
+      } else if (width >= 1270) {
+        // Linear interpolation: 14px at 1400, 13px at 1270
+        const fontSize = 13 + ((width - 1270) / (1400 - 1270)) * (14 - 13)
+        setOverlayFontSize(fontSize)
+      } else if (width >= 1204) {
+        // Linear interpolation: 13px at 1270, 12.25px at 1204
+        const fontSize = 12.25 + ((width - 1204) / (1270 - 1204)) * (13 - 12.25)
+        setOverlayFontSize(fontSize)
+      } else if (width >= 1200) {
+        // At exactly 1200px: maintain 12.25px from interpolation above
+        setOverlayFontSize(12.25)
+      } else if (width >= 900) {
+        // Below 1200px: reset to 14px at 1200, interpolate to 12.25px at 900
+        const fontSize = 12.25 + ((width - 900) / (1200 - 900)) * (14 - 12.25)
+        setOverlayFontSize(fontSize)
+      } else {
+        // Below 900px: reset to 16px for 2 columns
+        setOverlayFontSize(16)
+      }
     }
-    checkScreenSize()
-    window.addEventListener('resize', checkScreenSize)
-    return () => window.removeEventListener('resize', checkScreenSize)
+    calculateColumnsAndFontSize()
+    window.addEventListener('resize', calculateColumnsAndFontSize)
+    return () => window.removeEventListener('resize', calculateColumnsAndFontSize)
   }, [])
 
   const categoryTitle = category === 'fiction' ? 'FICTION' : 'NON-FICTION'
@@ -142,11 +177,11 @@ export default function BookView({
         {title}
       </div>
 
-      {/* Books grid - responsive: 2 columns on mobile, 4 on desktop */}
+      {/* Books grid - responsive: 4 → 3 → 2 columns based on screen width */}
       <div style={{
         display: "grid",
-        gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
-        gap: isMobile ? "24px" : "32px",
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
+        gap: columns === 2 ? "24px" : "32px",
         marginBottom: "2rem"
       }}>
         {books
@@ -202,7 +237,10 @@ export default function BookView({
                     flexDirection: "column",
                     justifyContent: "flex-start",
                     alignItems: "flex-start",
-                    padding: "1rem",
+                    paddingTop: "0.875rem",
+                    paddingBottom: "0.75rem",
+                    paddingLeft: "1rem",
+                    paddingRight: "1rem",
                     opacity: isHovered ? 1 : 0,
                     transition: "opacity 0.3s ease",
                     textAlign: "left",
@@ -211,12 +249,12 @@ export default function BookView({
                     <div style={{
                       color: "var(--Off-Black, #474747)",
                       fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                      fontSize: "clamp(10px, 1.4vw, 14px)",
+                      fontSize: `${overlayFontSize}px`,
                       fontStyle: "normal",
                       fontWeight: 300,
                       lineHeight: "normal",
-                      maxHeight: "200px",
-                      overflow: "hidden",
+                      maxHeight: "calc(100% - 1.625rem)",
+                      overflow: "auto",
                       textOverflow: "ellipsis"
                     }}>
                       {book.short_summary || "No description available"}
