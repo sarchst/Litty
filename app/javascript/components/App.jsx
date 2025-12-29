@@ -90,7 +90,7 @@ const App = () => {
           }}>
             Just give us 5 more minutes.
           </p>
-          <p style={{
+          {/* <p style={{
             fontFamily: "'Neue Haas Grotesk Text Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
             fontWeight: 500,
             fontSize: "12.25px",
@@ -100,7 +100,7 @@ const App = () => {
             textAlign: "center"
           }}>
             Official launch date: Dec. 28, 2025
-          </p>
+          </p> */}
         </div>
       </div>
     )
