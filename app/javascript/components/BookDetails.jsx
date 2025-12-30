@@ -1,12 +1,43 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function BookDetails({ book, year, category, onBack }) {
   const [activeTab, setActiveTab] = useState('description')
   const [isMobile, setIsMobile] = useState(false)
+  const containerRef = useRef(null)
 
   // Reset to description tab when book changes
   useEffect(() => {
     setActiveTab('description')
+  }, [book?.id])
+
+  // Reset scroll position to top when book changes or component mounts
+  useEffect(() => {
+    // Use requestAnimationFrame with a small delay to ensure it happens after render
+    setTimeout(() => {
+      // Scroll window
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      
+      // Also try scrolling the document element and body for better compatibility
+      if (document.documentElement) {
+        document.documentElement.scrollTop = 0
+      }
+      if (document.body) {
+        document.body.scrollTop = 0
+      }
+      
+      // Find and scroll the Content component's scrollable parent container
+      if (containerRef.current) {
+        let element = containerRef.current.parentElement
+        while (element && element !== document.body) {
+          const style = window.getComputedStyle(element)
+          if (style.overflow === 'auto' || style.overflowY === 'auto' || style.overflow === 'scroll' || style.overflowY === 'scroll') {
+            element.scrollTop = 0
+            break // Found the scrollable container, stop searching
+          }
+          element = element.parentElement
+        }
+      }
+    }, 0)
   }, [book?.id])
 
   // Mobile detection
@@ -153,6 +184,7 @@ export default function BookDetails({ book, year, category, onBack }) {
 
   return (
     <div 
+      ref={containerRef}
       style={{ 
         width: "100%",
         height: "100%",
@@ -284,7 +316,7 @@ export default function BookDetails({ book, year, category, onBack }) {
               fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "18px",
               fontStyle: "normal",
-              fontWeight: 400,
+              fontWeight: 700,
               lineHeight: "normal",
               margin: "0 0 1rem 0"
             }}>Description</h2>
@@ -335,7 +367,7 @@ export default function BookDetails({ book, year, category, onBack }) {
               fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "18px",
               fontStyle: "normal",
-              fontWeight: 400,
+              fontWeight: 700,
               lineHeight: "normal",
               margin: "0 0 1rem 0"
             }}>Author</h2>
@@ -359,7 +391,7 @@ export default function BookDetails({ book, year, category, onBack }) {
               fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
               fontSize: "18px",
               fontStyle: "normal",
-              fontWeight: 400,
+              fontWeight: 700,
               lineHeight: "normal",
               margin: "0 0 1rem 0"
             }}>Book Details</h2>

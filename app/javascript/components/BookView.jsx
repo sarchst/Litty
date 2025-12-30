@@ -57,8 +57,8 @@ export default function BookView({
         const fontSize = 12.25 + ((width - 900) / (1200 - 900)) * (14 - 12.25)
         setOverlayFontSize(fontSize)
       } else {
-        // Below 900px: reset to 16px for 2 columns
-        setOverlayFontSize(16)
+        // Below 900px: reset to 11px for 2 columns
+        setOverlayFontSize(11)
       }
     }
     calculateColumnsAndFontSize()
