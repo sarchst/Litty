@@ -235,9 +235,10 @@ export default function BookView({
                     style={{
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover",
+                      objectFit: "contain",
                       borderRadius: "4px",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                      backgroundColor: "white"
                     }}
                   />
                   
