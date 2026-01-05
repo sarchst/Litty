@@ -222,7 +222,13 @@ export default function BookDetails({ book, year, category, onBack }) {
         marginBottom: "2rem",
         display: "flex",
         alignItems: "center",
-        gap: "8px"
+        gap: "8px",
+        position: "sticky",
+        top: 0,
+        backgroundColor: "white",
+        zIndex: 10,
+        paddingTop: "16px",
+        paddingBottom: "16px"
       }}>
         <button
           onClick={onBack}
@@ -254,7 +260,7 @@ export default function BookDetails({ book, year, category, onBack }) {
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
           {/* Cover image */}
           {book.cover_image_url && (
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
               <img 
                 src={book.cover_image_url} 
                 alt={`${book.title} cover`}
@@ -267,6 +273,87 @@ export default function BookDetails({ book, year, category, onBack }) {
                   borderRadius: "4px"
                 }}
               />
+              <p style={{
+                color: "var(--Off-Black, #474747)",
+                fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                fontSize: "14px",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "normal",
+                textAlign: "center",
+                margin: "0"
+              }}>
+                Purchase this book through our affiliate links<br />to help support us:
+              </p>
+              {(book.amazon_associates_link || book.amazon_associates_kindle_link || book.amazon_associates_audible_link) && (
+                <div style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "1rem",
+                  width: "100%",
+                  maxWidth: "244px",
+                  margin: "0 auto"
+                }}>
+                  {book.amazon_associates_link && (
+                    <a 
+                      href={book.amazon_associates_link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                    >
+                      <img 
+                        src="/images/amazon.svg" 
+                        alt="Amazon"
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                          maxWidth: "100%",
+                          objectFit: "contain"
+                        }}
+                      />
+                    </a>
+                  )}
+                  {book.amazon_associates_kindle_link && (
+                    <a 
+                      href={book.amazon_associates_kindle_link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                    >
+                      <img 
+                        src="/images/kindle.svg" 
+                        alt="Kindle"
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                          maxWidth: "100%",
+                          objectFit: "contain"
+                        }}
+                      />
+                    </a>
+                  )}
+                  {book.amazon_associates_audible_link && (
+                    <a 
+                      href={book.amazon_associates_audible_link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                    >
+                      <img 
+                        src="/images/audible.svg" 
+                        alt="Audible"
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                          maxWidth: "100%",
+                          objectFit: "contain"
+                        }}
+                      />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           )}
           
@@ -470,7 +557,7 @@ export default function BookDetails({ book, year, category, onBack }) {
           
           {/* Cover image */}
           {book.cover_image_url && (
-            <div style={{ position: "relative" }}>
+            <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: "1rem" }}>
               <img 
                 src={book.cover_image_url} 
                 alt={`${book.title} cover`}
@@ -483,6 +570,89 @@ export default function BookDetails({ book, year, category, onBack }) {
                   borderRadius: "4px"
                 }}
               />
+              <p style={{
+                color: "var(--Off-Black, #474747)",
+                fontFamily: '"Suisse Int\'l", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                fontSize: "14px",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "normal",
+                textAlign: "center",
+                margin: "0",
+                width: "100%",
+                maxWidth: "448px"
+              }}>
+                Purchase this book through our affiliate links<br />to help support us:
+              </p>
+              {(book.amazon_associates_link || book.amazon_associates_kindle_link || book.amazon_associates_audible_link) && (
+                <div style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "1rem",
+                  width: "100%",
+                  maxWidth: "302px",
+                  margin: "0 auto"
+                }}>
+                  {book.amazon_associates_link && (
+                    <a 
+                      href={book.amazon_associates_link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                    >
+                      <img 
+                        src="/images/amazon.svg" 
+                        alt="Amazon"
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                          maxWidth: "100%",
+                          objectFit: "contain"
+                        }}
+                      />
+                    </a>
+                  )}
+                  {book.amazon_associates_kindle_link && (
+                    <a 
+                      href={book.amazon_associates_kindle_link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                    >
+                      <img 
+                        src="/images/kindle.svg" 
+                        alt="Kindle"
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                          maxWidth: "100%",
+                          objectFit: "contain"
+                        }}
+                      />
+                    </a>
+                  )}
+                  {book.amazon_associates_audible_link && (
+                    <a 
+                      href={book.amazon_associates_audible_link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                    >
+                      <img 
+                        src="/images/audible.svg" 
+                        alt="Audible"
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                          maxWidth: "100%",
+                          objectFit: "contain"
+                        }}
+                      />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           )}
           

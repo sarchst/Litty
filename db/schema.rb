@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_19_190001) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_04_152425) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -48,6 +48,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_19_190001) do
     t.integer "year_rank"
     t.text "short_summary"
     t.integer "global_rank"
+    t.string "amazon_associates_link"
+    t.string "amazon_associates_kindle_link"
+    t.string "amazon_associates_audible_link"
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
   end
 end

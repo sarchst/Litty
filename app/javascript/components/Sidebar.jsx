@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, booksCache, cacheLoading, isInMenu = false }) {
   const [expandedYears, setExpandedYears] = useState({})
@@ -8,6 +8,9 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
   const [hoveredRowRef, setHoveredRowRef] = useState(null)
   const [scrollContainerRef, setScrollContainerRef] = useState(null)
   const [cursorX, setCursorX] = useState(0)
+  const yearContentRefs = useRef({})
+  const yearHeaderRefs = useRef({})
+  const previousExpandedYears = useRef({})
 
   // Reset expanded years when mobile state changes
   useEffect(() => {
@@ -69,6 +72,94 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
       }
     }
   }, [scrollContainerRef])
+
+  // Scroll to expanded year on mobile
+  useEffect(() => {
+    if (!isMobile || !scrollContainerRef) {
+      previousExpandedYears.current = { ...expandedYears }
+      return
+    }
+
+    Object.keys(expandedYears).forEach(year => {
+      const wasExpanded = previousExpandedYears.current[year]
+      const isNowExpanded = expandedYears[year]
+
+      if (!wasExpanded && isNowExpanded) {
+        // Wait for content to fully render
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              setTimeout(() => {
+                const headerRef = yearHeaderRefs.current[year]
+                const contentRef = yearContentRefs.current[year]
+                
+                if (!headerRef || !contentRef || !scrollContainerRef) {
+                  return
+                }
+
+                const containerRect = scrollContainerRef.getBoundingClientRect()
+                const headerRect = headerRef.getBoundingClientRect()
+                const contentRect = contentRef.getBoundingClientRect()
+                
+                const viewportHeight = containerRect.height
+                const headerHeight = headerRect.height
+                const currentScrollTop = scrollContainerRef.scrollTop
+                const headerTopInViewport = headerRect.top - containerRect.top
+                const contentTopInViewport = contentRect.top - containerRect.top
+                const contentBottomInViewport = contentRect.bottom - containerRect.top
+                
+                const visibleScrollTop = currentScrollTop
+                const visibleScrollBottom = currentScrollTop + viewportHeight
+                const contentTopInScrollSpace = currentScrollTop + contentTopInViewport
+                const contentBottomInScrollSpace = currentScrollTop + contentBottomInViewport
+                
+                // Check if content is in a comfortable viewing position
+                const comfortableViewThreshold = headerHeight + 100
+                const contentIsComfortablyVisible = contentTopInScrollSpace >= visibleScrollTop && 
+                                                   contentTopInScrollSpace <= (visibleScrollTop + comfortableViewThreshold) &&
+                                                   contentBottomInScrollSpace <= visibleScrollBottom
+
+                if (!contentIsComfortablyVisible) {
+                  const scrollHeightBeforeScroll = scrollContainerRef.scrollHeight
+                  const clientHeightBeforeScroll = scrollContainerRef.clientHeight
+                  const isScrollable = scrollHeightBeforeScroll > clientHeightBeforeScroll
+                  
+                  if (!isScrollable) {
+                    // Container not scrollable yet - use scrollIntoView as fallback
+                    setTimeout(() => {
+                      const newScrollHeight = scrollContainerRef.scrollHeight
+                      const newClientHeight = scrollContainerRef.clientHeight
+                      
+                      if (newScrollHeight > newClientHeight) {
+                        // Now scrollable - calculate target and scroll
+                        const headerPositionInScrollSpace = scrollContainerRef.scrollTop + (headerRef.getBoundingClientRect().top - scrollContainerRef.getBoundingClientRect().top)
+                        scrollContainerRef.scrollTo({ top: headerPositionInScrollSpace, behavior: 'smooth' })
+                      } else {
+                        // Still not scrollable - use scrollIntoView
+                        headerRef.scrollIntoView({ 
+                          behavior: 'smooth', 
+                          block: 'start',
+                          inline: 'nearest'
+                        })
+                      }
+                    }, 50)
+                  } else {
+                    // Container is scrollable - use normal scrollTo
+                    const headerPositionInScrollSpace = currentScrollTop + headerTopInViewport
+                    const maxScroll = scrollHeightBeforeScroll - viewportHeight
+                    const targetScrollTop = Math.max(0, Math.min(headerPositionInScrollSpace, maxScroll))
+                    scrollContainerRef.scrollTo({ top: targetScrollTop, behavior: 'smooth' })
+                  }
+                }
+              }, 50)
+            })
+          })
+        })
+      }
+    })
+
+    previousExpandedYears.current = { ...expandedYears }
+  }, [expandedYears, isMobile, scrollContainerRef])
 
   const preloadCoverImages = (booksByYear) => {
     Object.values(booksByYear).forEach(yearData => {
@@ -134,6 +225,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
           <div key={year}>
             {/* Year Header - Sticky */}
             <div
+              ref={el => yearHeaderRefs.current[year] = el}
               style={{
                 position: "sticky",
                 top: 0,
@@ -186,7 +278,7 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
 
             {/* Year Content */}
             {expandedYears[year] && (
-              <div>
+              <div ref={el => yearContentRefs.current[year] = el}>
                 {/* Fiction Section */}
                 <div style={{ padding: "8px 0" }}>
                   <div 
@@ -199,11 +291,11 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                       transition: "opacity 0.2s ease"
                     }}
                     onClick={(e) => {
-                      e.target.style.opacity = "1"
+                      e.currentTarget.style.opacity = "1"
                       onSeeAll(year, 'fiction')
                     }}
-                    onMouseEnter={(e) => e.target.style.opacity = "0.7"}
-                    onMouseLeave={(e) => e.target.style.opacity = "1"}
+                    onMouseEnter={(e) => e.currentTarget.style.opacity = "0.7"}
+                    onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
                   >
                     <div style={{
                       color: "var(--Off-Black, #474747)",
@@ -305,11 +397,11 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                       transition: "opacity 0.2s ease"
                     }}
                     onClick={(e) => {
-                      e.target.style.opacity = "1"
+                      e.currentTarget.style.opacity = "1"
                       onSeeAll(year, 'nonfiction')
                     }}
-                    onMouseEnter={(e) => e.target.style.opacity = "0.7"}
-                    onMouseLeave={(e) => e.target.style.opacity = "1"}
+                    onMouseEnter={(e) => e.currentTarget.style.opacity = "0.7"}
+                    onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
                   >
                     <div style={{
                       color: "var(--Off-Black, #474747)",

@@ -15,12 +15,23 @@ export default function BookView({
   const [hoveredBookId, setHoveredBookId] = useState(null)
   const [columns, setColumns] = useState(4)
   const [overlayFontSize, setOverlayFontSize] = useState(14)
+  const [isMobile, setIsMobile] = useState(false)
 
   // Reset loading state when selected book changes
   useEffect(() => {
     setImageLoading(true)
     setImageError(false)
   }, [selectedBook?.id])
+
+  // Mobile detection
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   // Responsive column calculation: 4 → 3 → 2 based on screen width
   // Also calculate dynamic font size: 14px at full width → 13px before switching to 3 columns
@@ -171,7 +182,13 @@ export default function BookView({
         marginBottom: "2rem",
         display: "flex",
         alignItems: "center",
-        gap: "8px"
+        gap: "8px",
+        position: "sticky",
+        top: 0,
+        backgroundColor: "white",
+        zIndex: 10,
+        paddingTop: "16px",
+        paddingBottom: "16px"
       }}>
         <span style={{ width: "7px", height: "11px" }}></span>
         {title}
@@ -224,42 +241,44 @@ export default function BookView({
                     }}
                   />
                   
-                  {/* Hover overlay with description */}
-                  <div style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: "rgba(255, 255, 255, 0.925)",
-                    borderRadius: "4px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
-                    paddingTop: "0.875rem",
-                    paddingBottom: "0.75rem",
-                    paddingLeft: "1rem",
-                    paddingRight: "1rem",
-                    opacity: isHovered ? 1 : 0,
-                    transition: "opacity 0.3s ease",
-                    textAlign: "left",
-                    pointerEvents: "none"
-                  }}>
+                  {/* Hover overlay with description - desktop only */}
+                  {!isMobile && (
                     <div style={{
-                      color: "var(--Off-Black, #474747)",
-                      fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                      fontSize: `${overlayFontSize}px`,
-                      fontStyle: "normal",
-                      fontWeight: 300,
-                      lineHeight: "normal",
-                      maxHeight: "calc(100% - 1.625rem)",
-                      overflow: "auto",
-                      textOverflow: "ellipsis"
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundColor: "rgba(255, 255, 255, 0.925)",
+                      borderRadius: "4px",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start",
+                      paddingTop: "0.875rem",
+                      paddingBottom: "0.75rem",
+                      paddingLeft: "1rem",
+                      paddingRight: "1rem",
+                      opacity: isHovered ? 1 : 0,
+                      transition: "opacity 0.3s ease",
+                      textAlign: "left",
+                      pointerEvents: "none"
                     }}>
-                      {book.short_summary || "No description available"}
+                      <div style={{
+                        color: "var(--Off-Black, #474747)",
+                        fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                        fontSize: `${overlayFontSize}px`,
+                        fontStyle: "normal",
+                        fontWeight: 300,
+                        lineHeight: "normal",
+                        maxHeight: "calc(100% - 1.625rem)",
+                        overflow: "auto",
+                        textOverflow: "ellipsis"
+                      }}>
+                        {book.short_summary || "No description available"}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               )}
               

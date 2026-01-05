@@ -1,13 +1,25 @@
+import { useState, useEffect } from 'react'
 import { translations } from '../translations'
 
 export default function TheProject() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
   return (
     <div 
       style={{ 
         width: "100%",
         minHeight: "100%",
         backgroundColor: "white",
-        padding: "32px 16px 80px 32px", // Same padding as landing page, with extra bottom padding
+        padding: isMobile ? "32px 16px 80px 16px" : "32px 16px 80px 32px",
         boxSizing: "border-box"
       }}
     >
@@ -17,27 +29,29 @@ export default function TheProject() {
           minHeight: "100%",
           maxWidth: "1920px",
           maxHeight: "1080px",
-          padding: "0 16px 16px 32px",
+          padding: isMobile ? "0 16px 16px 16px" : "0 16px 16px 32px",
           backgroundColor: "white",
           margin: "0 auto",
-          position: "relative"
+          position: "relative",
+          boxSizing: "border-box"
         }}
       >
         <div style={{
           position: "absolute",
           top: "0",
           left: "0",
-          width: "100%"
+          width: "100%",
+          boxSizing: "border-box"
         }}>
           <h1 
             className="tk-new-spirit"
             style={{
               textAlign: "center",
               fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
-              fontSize: "64px",
+              fontSize: isMobile ? "48px" : "64px",
               fontWeight: 600,
               color: "var(--Off-Black, #474747)",
-              margin: "0",
+              margin: "0 0 48px 0",
               padding: "0",
               lineHeight: "1"
             }}
@@ -45,14 +59,20 @@ export default function TheProject() {
             LITTY
           </h1>
         <div style={{
-          width: "608px",
-          height: "750px",
+          width: "100%",
+          maxWidth: "608px",
+          height: isMobile ? "auto" : "750px",
           margin: "0 auto 80px auto",
+          paddingLeft: isMobile ? "0" : "16px",
+          paddingRight: isMobile ? "0" : "16px",
           fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-          fontSize: "18px",
+          fontSize: isMobile ? "16px" : "18px",
           fontWeight: 400,
           color: "var(--Off-Black, #474747)",
-          lineHeight: "1.6"
+          lineHeight: "1.6",
+          boxSizing: "border-box",
+          wordWrap: "break-word",
+          overflowWrap: "break-word"
         }}>
           <p style={{ margin: "0 0 1rem 0" }}>
             This project has been supported by countless lists, rankings, and recommendations compiled by critics, editors, and readers across the literary world.

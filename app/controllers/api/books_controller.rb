@@ -55,7 +55,10 @@ class Api::BooksController < ApplicationController
       is_fiction: book.is_fiction,
       year_rank: book.year_rank,
       global_rank: book.global_rank,
-      cover_image_url: book.cover_image_url
+      cover_image_url: book.cover_image_url,
+      amazon_associates_link: book.amazon_associates_link,
+      amazon_associates_kindle_link: book.amazon_associates_kindle_link,
+      amazon_associates_audible_link: book.amazon_associates_audible_link
     }
   end
 end

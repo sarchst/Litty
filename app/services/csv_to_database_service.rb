@@ -23,6 +23,9 @@
           is_fiction: genres&.include?("Fiction"),
           year_rank: row["year_rank"].to_i,
           global_rank: row["global_rank"].to_i,
+          amazon_associates_link: row["amazon_associates_link"],
+          amazon_associates_audible_link: row["amazon_associates_audible_link"],
+          amazon_associates_kindle_link: row["amazon_associates_kindle_link"],
         }
         
         book.update(attributes)
