@@ -23,6 +23,15 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
     }
   }, [isMobile, booksByYear])
 
+  // Reset hover state when switching to mobile
+  useEffect(() => {
+    if (isMobile) {
+      setHoveredBook(null)
+      setHoveredRowRef(null)
+      setCursorX(0)
+    }
+  }, [isMobile])
+
   useEffect(() => {
     if (booksCache) {
       
@@ -213,7 +222,8 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
               style={{
                 flex: 1,
                 overflowY: "auto",
-                borderRight: isInMenu ? "none" : "1px solid #474747"
+                borderRight: isInMenu ? "none" : "1px solid #474747",
+                paddingBottom: isMobile ? "32px" : "0"
               }}
             >
         {loading ? (
@@ -342,16 +352,16 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                           position: "relative"
                         }}
                         onClick={() => onBookSelect(book)}
-                        onMouseEnter={(e) => {
+                        onMouseEnter={!isMobile ? (e) => {
                           setHoveredBook(book)
                           setHoveredRowRef(e.currentTarget)
                           setCursorX(e.clientX)
-                        }}
-                        onMouseLeave={() => {
+                        } : undefined}
+                        onMouseLeave={!isMobile ? () => {
                           setHoveredBook(null)
                           setHoveredRowRef(null)
                           setCursorX(0)
-                        }}
+                        } : undefined}
                       >
                         <span 
                           style={{
@@ -448,16 +458,16 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
                           position: "relative"
                         }}
                         onClick={() => onBookSelect(book)}
-                        onMouseEnter={(e) => {
+                        onMouseEnter={!isMobile ? (e) => {
                           setHoveredBook(book)
                           setHoveredRowRef(e.currentTarget)
                           setCursorX(e.clientX)
-                        }}
-                        onMouseLeave={() => {
+                        } : undefined}
+                        onMouseLeave={!isMobile ? () => {
                           setHoveredBook(null)
                           setHoveredRowRef(null)
                           setCursorX(0)
-                        }}
+                        } : undefined}
                       >
                         <span 
                           style={{
@@ -497,8 +507,8 @@ export default function Sidebar({ onBookSelect, onSeeAll, isMobile = false, book
         )}
       </div>
 
-      {/* Hover cover image */}
-      {hoveredBook && hoveredBook.cover_image_url && hoveredRowRef && scrollContainerRef && cursorX > 0 && (
+      {/* Hover cover image - desktop only, NEVER on mobile */}
+      {!isMobile && hoveredBook && hoveredBook.cover_image_url && hoveredRowRef && scrollContainerRef && cursorX > 0 && (
         <div
           style={{
             position: "absolute",

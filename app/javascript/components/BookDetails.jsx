@@ -190,6 +190,7 @@ export default function BookDetails({ book, year, category, onBack }) {
         height: "100%",
         backgroundColor: "white",
         padding: "32px 16px 32px 32px",
+        paddingBottom: isMobile ? "calc(32px + env(safe-area-inset-bottom, 0px))" : "32px",
         boxSizing: "border-box"
       }}
     >
@@ -257,7 +258,7 @@ export default function BookDetails({ book, year, category, onBack }) {
       
       {isMobile ? (
         /* Mobile Layout - Vertical Stack */
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem", paddingBottom: "2rem" }}>
           {/* Cover image */}
           {book.cover_image_url && (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
@@ -300,7 +301,7 @@ export default function BookDetails({ book, year, category, onBack }) {
                       href={book.amazon_associates_link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                      style={{ display: "flex", alignItems: "center", width: "70px", flexShrink: 0 }}
                     >
                       <img 
                         src="/images/amazon.svg" 
@@ -308,7 +309,6 @@ export default function BookDetails({ book, year, category, onBack }) {
                         style={{
                           height: "auto",
                           width: "100%",
-                          maxWidth: "100%",
                           objectFit: "contain"
                         }}
                       />
@@ -319,7 +319,7 @@ export default function BookDetails({ book, year, category, onBack }) {
                       href={book.amazon_associates_kindle_link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                      style={{ display: "flex", alignItems: "center", width: "70px", flexShrink: 0 }}
                     >
                       <img 
                         src="/images/kindle.svg" 
@@ -327,7 +327,6 @@ export default function BookDetails({ book, year, category, onBack }) {
                         style={{
                           height: "auto",
                           width: "100%",
-                          maxWidth: "100%",
                           objectFit: "contain"
                         }}
                       />
@@ -338,7 +337,7 @@ export default function BookDetails({ book, year, category, onBack }) {
                       href={book.amazon_associates_audible_link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                      style={{ display: "flex", alignItems: "center", width: "70px", flexShrink: 0 }}
                     >
                       <img 
                         src="/images/audible.svg" 
@@ -346,7 +345,6 @@ export default function BookDetails({ book, year, category, onBack }) {
                         style={{
                           height: "auto",
                           width: "100%",
-                          maxWidth: "100%",
                           objectFit: "contain"
                         }}
                       />
@@ -599,7 +597,7 @@ export default function BookDetails({ book, year, category, onBack }) {
                       href={book.amazon_associates_link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                      style={{ display: "flex", alignItems: "center", width: "90px", flexShrink: 0 }}
                     >
                       <img 
                         src="/images/amazon.svg" 
@@ -607,7 +605,6 @@ export default function BookDetails({ book, year, category, onBack }) {
                         style={{
                           height: "auto",
                           width: "100%",
-                          maxWidth: "100%",
                           objectFit: "contain"
                         }}
                       />
@@ -618,7 +615,7 @@ export default function BookDetails({ book, year, category, onBack }) {
                       href={book.amazon_associates_kindle_link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                      style={{ display: "flex", alignItems: "center", width: "90px", flexShrink: 0 }}
                     >
                       <img 
                         src="/images/kindle.svg" 
@@ -626,7 +623,6 @@ export default function BookDetails({ book, year, category, onBack }) {
                         style={{
                           height: "auto",
                           width: "100%",
-                          maxWidth: "100%",
                           objectFit: "contain"
                         }}
                       />
@@ -637,7 +633,7 @@ export default function BookDetails({ book, year, category, onBack }) {
                       href={book.amazon_associates_audible_link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", flex: 1, maxWidth: "100%" }}
+                      style={{ display: "flex", alignItems: "center", width: "90px", flexShrink: 0 }}
                     >
                       <img 
                         src="/images/audible.svg" 
@@ -645,7 +641,6 @@ export default function BookDetails({ book, year, category, onBack }) {
                         style={{
                           height: "auto",
                           width: "100%",
-                          maxWidth: "100%",
                           objectFit: "contain"
                         }}
                       />

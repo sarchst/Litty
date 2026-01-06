@@ -26,7 +26,14 @@ export default function BookView({
   // Mobile detection
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768)
+      const nowMobile = window.innerWidth <= 768
+      setIsMobile((prevIsMobile) => {
+        // Reset hover state when switching to mobile
+        if (nowMobile && !prevIsMobile) {
+          setHoveredBookId(null)
+        }
+        return nowMobile
+      })
     }
     checkScreenSize()
     window.addEventListener('resize', checkScreenSize)
@@ -217,8 +224,8 @@ export default function BookView({
                 position: "relative"
               }}
               onClick={() => onBookSelect(book)}
-              onMouseEnter={() => setHoveredBookId(bookId)}
-              onMouseLeave={() => setHoveredBookId(null)}
+              onMouseEnter={!isMobile ? () => setHoveredBookId(bookId) : undefined}
+              onMouseLeave={!isMobile ? () => setHoveredBookId(null) : undefined}
             >
               {/* Book cover with hover overlay */}
               {book.cover_image_url && (
@@ -242,8 +249,8 @@ export default function BookView({
                     }}
                   />
                   
-                  {/* Hover overlay with description - desktop only */}
-                  {!isMobile && (
+                  {/* Hover overlay with description - desktop only, NEVER on mobile */}
+                  {!isMobile && isHovered && (
                     <div style={{
                       position: "absolute",
                       top: 0,
@@ -260,7 +267,7 @@ export default function BookView({
                       paddingBottom: "0.75rem",
                       paddingLeft: "1rem",
                       paddingRight: "1rem",
-                      opacity: isHovered ? 1 : 0,
+                      opacity: 1,
                       transition: "opacity 0.3s ease",
                       textAlign: "left",
                       pointerEvents: "none"

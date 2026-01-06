@@ -47,16 +47,17 @@ export default function LandingPage() {
           everyone's talking about.
         </h2>
         
-        {/* Landing page image - flush bottom right corner */}
+        {/* Landing page image - flush bottom right corner, responsive height */}
         <img
           src="/images/landing-kitty.png"
           alt="Landing page illustration"
           style={{
-            position: "fixed",
+            position: "absolute",
             bottom: "0",
             right: "0",
-            maxWidth: "449px",
-            maxHeight: "449px",
+            height: "calc((100vh - 200px) * 0.9)", // Account for title height (~126px) + padding (32px) + margin, reduced by 10%
+            width: "auto", // Maintain aspect ratio
+            maxWidth: "100%", // Prevent overflow
             objectFit: "contain"
           }}
         />
