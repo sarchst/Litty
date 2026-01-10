@@ -144,8 +144,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
           >
             BLOG
           </div> */}
-          {/* Temporarily hidden - pages not ready for launch */}
-          {/* <div
+          <div
             className="tk-new-spirit"
             onClick={() => onNavigate('about-us')}
             style={{
@@ -167,7 +166,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
             onMouseLeave={(e) => e.target.style.opacity = "1"}
           >
             ABOUT US
-          </div> */}
+          </div>
         </div>
       ) : websiteLive && isMobile ? (
         // Mobile Menu
@@ -329,8 +328,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                   >
                     BLOG
                   </div> */}
-                  {/* Temporarily hidden - pages not ready for launch */}
-                  {/* <div
+                  <div
                     className="tk-new-spirit"
                     onClick={() => handleNavClick('about-us')}
                     style={{
@@ -346,7 +344,7 @@ export default function Header({ onNavigate, booksCache, cacheLoading, onBookSel
                     onMouseLeave={(e) => e.target.style.opacity = "1"}
                   >
                     ABOUT US
-                  </div> */}
+                  </div>
                 </div>
                 
                 {/* Modified Sidebar with "SEE THE BEST OF" header - no padding */}
