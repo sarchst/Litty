@@ -111,6 +111,46 @@ export default function TheProject() {
             Typography inspired by timeless serif traditions, adapted for the web.
           </p>
         </div>
+        <div style={{
+          width: "100%",
+          maxWidth: "608px",
+          margin: "80px auto 0 auto",
+          paddingLeft: isMobile ? "0" : "16px",
+          paddingRight: isMobile ? "0" : "16px",
+          paddingBottom: "80px",
+          boxSizing: "border-box"
+        }}>
+          <img
+            src="/images/coffee-cat.png"
+            alt="Coffee Cat"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block"
+            }}
+          />
+          <div style={{
+            marginTop: "24px",
+            textAlign: "center"
+          }}>
+            <a
+              href="https://buymeacoffee.com/litty.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "var(--Off-Black, #474747)",
+                fontFamily: '"New Spirit", "new-spirit", "Playfair Display", serif',
+                fontSize: "16px",
+                fontStyle: "normal",
+                fontWeight: 600,
+                lineHeight: "normal",
+                textDecoration: "underline"
+              }}
+            >
+              Buy us a coffee and support Litty
+            </a>
+          </div>
+        </div>
         </div>
       </div>
     </div>
