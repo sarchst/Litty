@@ -166,8 +166,20 @@ export default function AboutUs() {
                   fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                   fontSize: "15px",
                   marginBottom: "0",
-                  marginTop: "-4px"
-                }}>hamish [@] litty.ca</div>
+                  marginTop: "-4px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px"
+                }}>
+                  <a href="mailto:hamish@litty.ca" style={{ display: "inline-flex", alignItems: "center" }}>
+                    <img 
+                      src="/images/email-icon.png" 
+                      alt="Email" 
+                      style={{ height: "15px", width: "auto", display: "inline-block", verticalAlign: "middle" }}
+                    />
+                  </a>
+                  <a href="mailto:hamish@litty.ca" style={{ color: "var(--Off-Black, #474747)", textDecoration: "underline" }}>hamish [@] litty.ca</a>
+                </div>
               </div>
             </div>
             
@@ -271,16 +283,36 @@ export default function AboutUs() {
                   fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                   fontSize: "15px",
                   marginBottom: "0px",
-                  marginTop: "-4px"
+                  marginTop: "-4px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px"
                 }}>
+                  <a href="https://markjperez.com" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center" }}>
+                    <img 
+                      src="/images/website-icon.png" 
+                      alt="Website" 
+                      style={{ height: "15px", width: "auto", display: "inline-block", verticalAlign: "middle" }}
+                    />
+                  </a>
                   <a href="https://markjperez.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--Off-Black, #474747)", textDecoration: "underline" }}>markjperez.com</a>
                 </div>
                 <div style={{ 
                   fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                   fontSize: "15px",
                   marginBottom: "0",
-                  marginTop: "-4px"
+                  marginTop: "-4px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px"
                 }}>
+                  <a href="https://www.instagram.com/_markperez" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center" }}>
+                    <img 
+                      src="/images/instagram-icon.png" 
+                      alt="Instagram" 
+                      style={{ height: "15px", width: "auto", display: "inline-block", verticalAlign: "middle" }}
+                    />
+                  </a>
                   <a href="https://www.instagram.com/_markperez" target="_blank" rel="noopener noreferrer" style={{ color: "var(--Off-Black, #474747)", textDecoration: "underline" }}>@_markperez</a>
                 </div>
               </div>
@@ -386,16 +418,36 @@ export default function AboutUs() {
                   fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                   fontSize: "15px",
                   marginBottom: "0px",
-                  marginTop: "-4px"
+                  marginTop: "-4px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px"
                 }}>
+                  <a href="https://linkedin.com/in/sarchenstarke/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center" }}>
+                    <img 
+                      src="/images/website-icon.png" 
+                      alt="Website" 
+                      style={{ height: "15px", width: "auto", display: "inline-block", verticalAlign: "middle" }}
+                    />
+                  </a>
                   <a href="https://linkedin.com/in/sarchenstarke/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--Off-Black, #474747)", textDecoration: "underline" }}>linkedin.com/in/sarchenstarke/</a>
                 </div>
                 <div style={{ 
                   fontFamily: '"Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                   fontSize: "15px",
                   marginBottom: "0",
-                  marginTop: "-4px"
+                  marginTop: "-4px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px"
                 }}>
+                  <a href="https://www.instagram.com/sarchst" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center" }}>
+                    <img 
+                      src="/images/instagram-icon.png" 
+                      alt="Instagram" 
+                      style={{ height: "15px", width: "auto", display: "inline-block", verticalAlign: "middle" }}
+                    />
+                  </a>
                   <a href="https://www.instagram.com/sarchst" target="_blank" rel="noopener noreferrer" style={{ color: "var(--Off-Black, #474747)", textDecoration: "underline" }}>@sarchst</a>
                 </div>
               </div>
